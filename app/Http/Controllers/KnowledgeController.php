@@ -21,16 +21,27 @@ class KnowledgeController extends Controller
      */
     public function index(Request $request): View
     {
-        $this->authorize('view-any', Knowledge::class);
+        if (auth()->user()->isSuperAdmin()){
+            $this->authorize('view-any', Knowledge::class);
+    
+            $search = $request->get('search', '');
+    
+            $knowledges = Knowledge::search($search)
+                ->latest()
+                ->paginate(5)
+                ->withQueryString();
+    
+            return view('app.knowledges.index', compact('knowledges', 'search'));
 
-        $search = $request->get('search', '');
+        }else{
+        $auth = auth()->user();
+        $knowledges = Knowledge::where('user_id', $auth->id)->get();
+        $users = User::pluck('name', 'id');
+        $topics = Topic::pluck('name', 'id');
+        $categories = Category::pluck('name', 'id');
 
-        $knowledges = Knowledge::search($search)
-            ->latest()
-            ->paginate(5)
-            ->withQueryString();
-
-        return view('app.knowledges.index', compact('knowledges', 'search'));
+        return view('app-landing.my-know', compact('knowledges', 'categories', 'users', 'topics'));
+        }
     }
 
     /**
@@ -66,9 +77,16 @@ class KnowledgeController extends Controller
 
         $knowledge = Knowledge::create($validated);
 
-        return redirect()
-            ->route('knowledges.edit', $knowledge)
-            ->withSuccess(__('crud.common.created'));
+        if (auth()->user()->isSuperAdmin()){
+            return redirect()
+                ->route('knowledges.edit', $knowledge)
+                ->withSuccess(__('crud.common.created'));
+
+        }else{
+            return redirect()
+                ->route('my-knowledge', $knowledge);
+        }
+
     }
 
     /**

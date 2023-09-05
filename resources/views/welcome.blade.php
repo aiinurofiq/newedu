@@ -745,17 +745,14 @@
 			  <div class="col-11 mx-auto position-relative">
 				<div class="row align-items-center">
 				  <div class="col-lg-7">
-					<h3 class="text-white">Become an Instructor!</h3>
+					<h3 class="text-white">Knowledge Manajemen dan Learning Manajemen Perum Jasa Tirta I</h3>
 					<p class="text-white mb-3 mb-lg-0">
-					  Speedily say has suitable disposal add boy. On forth
-					  doubt miles of child. Exercise joy man children
-					  rejoiced. Yet uncommonly his ten who diminution
-					  astonished.
+					  Pengetahuan dan Pembelajaran untuk seluruh Karyawan Perum Jada Tirta I.
 					</p>
 				  </div>
 				  <div class="col-lg-5 text-lg-end">
 					<a href="#" class="btn btn-outline-warning mb-0"
-					  >Start Teaching Today</a
+					  >Ayo Membaca!</a
 					>
 				  </div>
 				</div>
@@ -766,7 +763,7 @@
 	  </div>
 	</div>
   </section>
-  <section class="bg-light">
+  {{-- <section class="bg-light">
 	<div class="container">
 	  <div class="row g-4 g-lg-5 align-items-center">
 		<div class="col-xl-7 order-2 order-xl-1">
@@ -1092,6 +1089,6 @@
 		</div>
 	  </div>
 	</div>
-  </section>
+  </section> --}}
 @endsection
 

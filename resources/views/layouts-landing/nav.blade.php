@@ -6,31 +6,7 @@
         </button>
         <div class="navbar-collapse w-100 collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-                <li class="nav-item dropdown dropdown-menu-shadow-stacked">
-                  <a
-                    class="nav-link bg-primary bg-opacity-10 rounded-3 text-primary px-3 py-3 py-xl-0"
-                    href="#"
-                    id="categoryMenu"
-                    data-bs-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                    ><i class="bi bi-ui-radios-grid me-2"></i
-                    ><span>Knowledge Kategori</span></a
-                  >
-                  <ul class="dropdown-menu" aria-labelledby="categoryMenu">
-                    @forelse ($categories as $category )
-                    <li><a class="dropdown-item" href="#">{{$category->name}}</a></li>
-                    @empty
-                    Data Belum Tersedia
-                    @endforelse
-                    
-                    {{-- <li>
-                      <a
-                        class="dropdown-item bg-primary text-primary bg-opacity-10 rounded-2 mb-0"
-                        href="#"
-                        >View all categories</a
-                      >
-                    </li> --}}
+                
                   </ul>
                 </li>
               </ul>

@@ -3,8 +3,8 @@
         <div class="list-group list-group-dark list-group-borderless collapse-list"> 
             <a class="list-group-item" data-bs-toggle="collapse" href="#collapseauthentication1" role="button" aria-expanded="false" aria-controls="collapseauthentication"> <i class="bi bi-ui-checks-grid fa-fw me-2"></i>Dashboard</a>
             <ul class="nav collapse flex-column" id="collapseauthentication1" data-bs-parent="#navbar-sidebar">
-                <li class="nav-item"> <a class="nav-link" href="#">Dashboard Knowledge</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">Dashboard Learning</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('/know-dashboard')}}">Dashboard Knowledge</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('/learn-dashboard')}}">Dashboard Learning</a></li>
             </ul>
             <a class="list-group-item" data-bs-toggle="collapse" href="#collapseauthentication2" role="button" aria-expanded="false" aria-controls="collapseauthentication"> <i class="bi bi-card-checklist fa-fw me-2"></i>Permintaan Saya</a>
             <ul class="nav collapse flex-column" id="collapseauthentication2" data-bs-parent="#navbar-sidebar">

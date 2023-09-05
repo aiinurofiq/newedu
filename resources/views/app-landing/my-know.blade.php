@@ -1,6 +1,6 @@
 @extends('app-landing.accdash')
 @section('content-profile')
-<form class="bg-light border p-4 rounded-3 my-4 z-index-9 position-relative">
+{{-- <form class="bg-light border p-4 rounded-3 my-4 z-index-9 position-relative">
     <div class="row g-3">
         <button
             type="button"
@@ -12,9 +12,9 @@
         
         
     </div>
-</form>
+</form> --}}
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg">
     <div class="modal-content">
         <div class="modal-header">
@@ -22,112 +22,33 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <div class="col-12">
-                <label class="form-label">Course title</label>
-                <input class="form-control" type="text" placeholder="Enter course title"> 
-            </div>
-            <div class="col-12">
-                <label class="form-label">Short description</label>
-                <textarea class="form-control" rows="2" placeholder="Enter keywords"></textarea>
-            </div>
-            <div class="col-md-12">
-                <label class="form-label">Course category</label>
-                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true">
-                    <option value="">Select category</option>
-                    <option>Engineer</option>
-                    <option>Medical</option>
-                    <option>Information technology</option>
-                    <option>Finance</option>
-                    <option>Marketing</option>
-                </select>
-            </div>
+            <x-form
+                method="POST"
+                action="{{ route('knowledges.store') }}"
+                has-files
+                class="mt-4"
+            >
+                @include('app.knowledges.form-inputs')
+
+                <div class="mt-4">
+                        <i class="icon ion-md-return-left text-primary"></i>
+                        @lang('crud.common.back')
+                    </a>
+
+                    <button type="submit" class="btn btn-primary float-right">
+                        <i class="icon ion-md-save"></i>
+                        @lang('crud.common.create')
+                    </button>
+                </div>
+            </x-form>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
         </div>
     </div>
     </div>
-</div>
+</div> --}}
 
-{{-- <form class="bg-light border p-4 rounded-3 my-4 z-index-9 position-relative">
-    <div class="row g-3">
-        <div class="col-xl-3">
-        <input
-            class="form-control me-1"
-            type="search"
-            placeholder="Enter keyword"
-        />
-        </div>
-        <div class="col-xl-8">
-        <div class="row g-3">
-            <div class="col-sm-6 col-md-3 pb-2 pb-md-0">
-            <select
-                class="form-select form-select-sm js-choice"
-                aria-label=".form-select-sm example"
-            >
-                <option value="">Categories</option>
-                <option>All</option>
-                <option>Development</option>
-                <option>Design</option>
-                <option>Accounting</option>
-                <option>Translation</option>
-                <option>Finance</option>
-                <option>Legal</option>
-                <option>Photography</option>
-                <option>Writing</option>
-                <option>Marketing</option>
-            </select>
-            </div>
-            <div class="col-sm-6 col-md-3 pb-2 pb-md-0">
-            <select
-                class="form-select form-select-sm js-choice"
-                aria-label=".form-select-sm example"
-            >
-                <option value="">Price level</option>
-                <option>All</option>
-                <option>Free</option>
-                <option>Paid</option>
-            </select>
-            </div>
-            <div class="col-sm-6 col-md-3 pb-2 pb-md-0">
-            <select
-                class="form-select form-select-sm js-choice"
-                aria-label=".form-select-sm example"
-            >
-                <option value="">Skill level</option>
-                <option>All levels</option>
-                <option>Beginner</option>
-                <option>Intermediate</option>
-                <option>Advanced</option>
-            </select>
-            </div>
-            <div class="col-sm-6 col-md-3 pb-2 pb-md-0">
-            <select
-                class="form-select form-select-sm js-choice"
-                aria-label=".form-select-sm example"
-            >
-                <option value="">Language</option>
-                <option>English</option>
-                <option>Francas</option>
-                <option>Russian</option>
-                <option>Hindi</option>
-                <option>Bengali</option>
-                <option>Spanish</option>
-            </select>
-            </div>
-        </div>
-        </div>
-        <div class="col-xl-1">
-        <button
-            type="button"
-            class="btn btn-primary mb-0 rounded z-index-1 w-100"
-        >
-            <i class="fas fa-search"></i>
-        </button>
-        </div>
-    </div>
-</form> --}}
 <div class="col-12">
     <div class="row g-4">
         @foreach ($knowledges as $knowledge )
