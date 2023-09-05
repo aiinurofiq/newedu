@@ -21,7 +21,7 @@
                                     <li class="list-inline-item me-3 mb-1 mb-sm-0"> <span class="h6">52</span> <span class="text-body fw-light">Completed lessons</span> </li> --}}
                                 </ul>
                             </div>
-                            <div class="mt-2 mt-sm-0"> <a href="student-course-list.html" class="btn btn-outline-primary mb-0">Lihat Profil Saya</a> </div>
+                            <div class="mt-2 mt-sm-0"> <a href="{{url('/my-profile')}}" class="btn btn-outline-primary mb-0">Lihat Profil Saya</a> </div>
                         </div>
                     </div>
                 </div>

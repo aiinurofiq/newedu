@@ -22,9 +22,12 @@ use App\Http\Controllers\BumnclassController;
 use App\Http\Controllers\KnowledgeController;
 use App\Http\Controllers\ValvisionController;
 use App\Http\Controllers\BumnsectorController;
+use App\Http\Controllers\EditProfileController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\UniversityController;
 use App\Http\Controllers\FieldofpositionController;
+use App\Http\Controllers\KnowController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,4 +81,6 @@ Route::prefix('/')
         Route::resource('divisions', DivisionController::class);
         Route::get('/account-dashboard', [AccdashController::class, 'index'])->name('accdash');
         Route::get('/knowledge/{id}', [LandingController::class, 'show'])->name('knows-detail');
+        Route::get('/my-profile', [ProfileController::class, 'index'])->name('my-profile');
+        Route::get('/my-knowledge', [KnowController::class, 'index'])->name('my-knowledge');
     });
