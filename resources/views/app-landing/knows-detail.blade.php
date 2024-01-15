@@ -115,14 +115,14 @@
                                                     <div class="accordion-body mt-3">
                                                         <div class="vstack gap-3">
                                                             @foreach ($jurnal as $items)
-                                                                <div id="header-{{ $items->id }}" class='header'>
+                                                                <div id="header-j{{ $items->id }}" class='header'>
                                                                     <div
                                                                         class="d-flex justify-content-between align-items-center">
                                                                         <div class="position-relative d-flex align-items-center changeimg"
-                                                                            data-id="{{ $items->id }}"
+                                                                            data-id="{{ $items->id }}" data-type="j"
                                                                             data-img="{{ explode('|', $items->file)[0] }}">
                                                                             <div href="#"
-                                                                                id="btn-{{ $items->id }}"
+                                                                                id="btn-j{{ $items->id }}"
                                                                                 class="btn btn-danger-soft btn-round btn-sm mb-0 ">
                                                                                 <i class="fas fa-play me-0"></i>
                                                                             </div>
@@ -130,7 +130,7 @@
                                                                                 class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-200px">Jurnal
                                                                                 {{ $loop->index + 1 }}</span>
                                                                         </div>
-                                                                        @if ($request ?? 0)
+                                                                        @if ($request->count())
                                                                             @if ($approve ?? 0)
                                                                                 <span><a href="{{ asset(\Storage::url(explode('|', $items->file)[0])) }}"
                                                                                         class="btn btn-primary-soft btn-round btn-sm mb-0 "
@@ -169,14 +169,14 @@
                                                     <div class="accordion-body mt-3">
                                                         <div class="vstack gap-3">
                                                             @foreach ($exsum as $items)
-                                                                <div id="header-{{ $items->id }}" class='header'>
+                                                                <div id="header-exs{{ $items->id }}" class='header'>
                                                                     <div
                                                                         class="d-flex justify-content-between align-items-center">
                                                                         <div class="position-relative d-flex align-items-center changeimg"
-                                                                            data-id="{{ $items->id }}"
+                                                                            data-id="{{ $items->id }}" data-type="exs"
                                                                             data-img="{{ explode('|', $items->file)[0] }}">
                                                                             <div href="#"
-                                                                                id="btn-{{ $items->id }}"
+                                                                                id="btn-exs{{ $items->id }}"
                                                                                 class="btn btn-danger-soft btn-round btn-sm mb-0 ">
                                                                                 <i class="fas fa-play me-0"></i>
                                                                             </div>
@@ -184,7 +184,7 @@
                                                                                 class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-200px">Exsum
                                                                                 {{ $loop->index + 1 }}</span>
                                                                         </div>
-                                                                        @if ($request ?? 0)
+                                                                        @if ($request->count())
                                                                             @if ($approve ?? 0)
                                                                                 <span><a href="{{ asset(\Storage::url(explode('|', $items->file)[0])) }}"
                                                                                         class="btn btn-primary-soft btn-round btn-sm mb-0 "
@@ -223,14 +223,14 @@
                                                     <div class="accordion-body mt-3">
                                                         <div class="vstack gap-3">
                                                             @foreach ($report as $items)
-                                                                <div id="header-{{ $items->id }}" class='header'>
+                                                                <div id="header-re{{ $items->id }}" class='header'>
                                                                     <div
                                                                         class="d-flex justify-content-between align-items-center">
                                                                         <div class="position-relative d-flex align-items-center changeimg"
-                                                                            data-id="{{ $items->id }}"
+                                                                            data-id="{{ $items->id }}" data-type="re"
                                                                             data-img="{{ explode('|', $items->file)[0] }}">
                                                                             <div href="#"
-                                                                                id="btn-{{ $items->id }}"
+                                                                                id="btn-re{{ $items->id }}"
                                                                                 class="btn btn-danger-soft btn-round btn-sm mb-0 ">
                                                                                 <i class="fas fa-play me-0"></i>
                                                                             </div>
@@ -238,7 +238,7 @@
                                                                                 class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-200px">Report
                                                                                 {{ $loop->index + 1 }}</span>
                                                                         </div>
-                                                                        @if ($request ?? 0)
+                                                                        @if ($request->count())
                                                                             @if ($approve ?? 0)
                                                                                 <span><a href="{{ asset(\Storage::url(explode('|', $items->file)[0])) }}"
                                                                                         class="btn btn-primary-soft btn-round btn-sm mb-0 "
@@ -277,14 +277,14 @@
                                                     <div class="accordion-body mt-3">
                                                         <div class="vstack gap-3">
                                                             @foreach ($explanation as $items)
-                                                                <div id="header-{{ $items->id }}" class='header'>
+                                                                <div id="header-exp{{ $items->id }}" class='header'>
                                                                     <div
                                                                         class="d-flex justify-content-between align-items-center">
                                                                         <div class="position-relative d-flex align-items-center changeimg"
-                                                                            data-id="{{ $items->id }}"
+                                                                            data-id="{{ $items->id }}" data-type="exp"
                                                                             data-img="{{ explode('|', $items->file)[0] }}">
                                                                             <div href="#"
-                                                                                id="btn-{{ $items->id }}"
+                                                                                id="btn-exp{{ $items->id }}"
                                                                                 class="btn btn-danger-soft btn-round btn-sm mb-0 ">
                                                                                 <i class="fas fa-play me-0"></i>
                                                                             </div>
@@ -292,7 +292,7 @@
                                                                                 class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-200px">Explanation
                                                                                 {{ $loop->index + 1 }}</span>
                                                                         </div>
-                                                                        @if ($request ?? 0)
+                                                                        @if ($request->count())
                                                                             @if ($approve ?? 0)
                                                                                 <span><a href="{{ asset(\Storage::url(explode('|', $items->file)[0])) }}"
                                                                                         class="btn btn-primary-soft btn-round btn-sm mb-0 "
@@ -313,7 +313,7 @@
                                     @endif
                                 @endif
                                 @if (Request::segment(1) != 'view')
-                                    @if ($request ?? 0)
+                                    @if ($request->count())
                                         <div class="mt-4">
                                             <h4 class="mb-3">Request Knowledge</h4>
                                             <div class="d-grid gap-2">
@@ -362,9 +362,8 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        @if ($request ?? 0)
-                            @if ($approve)
-
+                        @if ($request->count())
+                            @if ($checkreject->status == 2)
                                 <div class="row mb-3">
                                     <div class="col-12 mt-2">Note Sebelum</div>
                                 </div>
@@ -382,7 +381,7 @@
                                 </div>
                                 <div class="row mb-3">
                                     <div class="col-12">
-                                        @if ($request ?? 0)
+                                        @if ($request->count())
                                             @if ($checkreject->status == 2)
                                                 <input type="text" class="form-control"
                                                     value="{{ $checkreject->comment }}" aria-label="Username"
@@ -398,11 +397,11 @@
                         </div>
                         <div class="row mb-3">
                             <div class="col-12">
-                                @if ($request ?? 0)
+                                @if ($request->count())
                                     <input name='requestknow' id='requestknow' type="text" class="form-control"
                                         value="{{ $checkreject->status == 0 ? $checkreject->description : '' }}"
                                         aria-label="Username" aria-describedby="basic-addon1"
-                                        {{ $checkreject->status == 2 ? '' : 'disabled' }}>
+                                        {{ $checkreject->status == 2 || $checkreject->status == 1 ? '' : 'disabled' }}>
                                 @else
                                     <input name='requestknow' id='requestknow' type="text" class="form-control"
                                         value="" aria-label="Username" aria-describedby="basic-addon1">
@@ -411,8 +410,8 @@
                                     value="{{ $knows->id }}" aria-label="Username" aria-describedby="basic-addon1">
                             </div>
                         </div>
-                        @if ($request ?? 0)
-                            @if ($checkreject->status == 2)
+                        @if ($request->count())
+                            @if ($checkreject->status == 2 || $checkreject->status == 1)
                                 <hr>
                                 <p class="ms-2"><span class="fw-bold">Note :</span> Silahkan mengisi note sebagai alasan
                                     dalam akses file knowledge dan menunggu approve dari kami. Terima Kasih!</p>
@@ -425,8 +424,8 @@
 
                     </div>
                     <div class="modal-footer">
-                        @if ($request ?? 0)
-                            @if ($checkreject->status == 2)
+                        @if ($request->count())
+                            @if ($checkreject->status == 2 || $checkreject->status == 1)
                                 <button type="submit" class="btn btn-primary">Send</button>
                             @endif
                         @else
@@ -556,13 +555,14 @@
                     $('#filepdf').addClass('d-none')
                     $('.mediaplayer').addClass('d-none')
                     let dataIdheader = $(this).attr("data-id");
+                    let typemod = $(this).attr("data-type");
                     let dataId = $(this).attr("data-img");
                     let videoembed = $(this).attr("data-url");
-                    $("#header-" + dataIdheader).toggleClass("p-2 bg-success bg-opacity-10 rounded-3")
+                    $("#header-" + typemod + dataIdheader).toggleClass("p-2 bg-success bg-opacity-10 rounded-3")
                     // $("#duration-" + dataIdheader).html("Playing")
                     // alert("#btn-"+dataIdheader)
-                    $("#btn-" + dataIdheader).removeClass("btn-danger-soft")
-                    $("#btn-" + dataIdheader).addClass("btn-success")
+                    $("#btn-" + typemod + dataIdheader).removeClass("btn-danger-soft")
+                    $("#btn-" + typemod + dataIdheader).addClass("btn-success")
                     if (videoembed) {
                         $('#youtuber').removeClass('d-none')
                         $('#youtuber').attr("src",
@@ -581,24 +581,24 @@
                             case 'png':
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
-                                    "http://edutirta.test/" + img);
+                                    "http://jtlearning.test/" + img);
                                 break;
                             case 'jpeg':
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
-                                    "http://edutirta.test/" + img);
+                                    "http://jtlearning.test/" + img);
                                 break;
                             case 'jpg':
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
-                                    "http://edutirta.test/" + img);
+                                    "http://jtlearning.test/" + img);
                                 break;
                             case 'mp4':
                                 $('.mediaplayer').removeClass('d-none')
                                 // player.play();
                                 // $('#mediadetail').attr("src",
-                                //     "http://edutirta.test/" + img);
-                                src = "http://edutirta.test/" + img;
+                                //     "http://jtlearning.test/" + img);
+                                src = "http://jtlearning.test/" + img;
                                 type = "video/mp4";
                                 poster = "";
                                 // alert(player)
@@ -618,7 +618,7 @@
                                 break;
                             case 'pdf':
                                 $('#filepdf').removeClass('d-none')
-                                url = "http://edutirta.test/" + img;
+                                url = "http://jtlearning.test/" + img;
                                 pageNum = 1;
 
                                 pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {

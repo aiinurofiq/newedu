@@ -19,17 +19,23 @@ use App\Models\Lpayment;
 use App\Models\LTransaction;
 use App\Models\Reqknowledge;
 use App\Models\Reqknowstat;
+use App\Models\User;
+use Illuminate\Support\Str;
 
 class LandingController extends Controller
 {
     public function index(Request $request): View
     {
         $knows = Knowledge::all();
+        $report = Report::all();
+        $exsum = Exsum::all();
+        $jurnal = Jurnal::all();
+        $explanation = Explanation::all();
         $learns = Learning::all();
         $topics = Topic::all();
         $categories = Category::all();
 
-        return view('welcome', compact('knows', 'topics', 'categories', 'learns'));
+        return view('welcome', compact('knows', 'topics', 'categories','report', 'exsum', 'jurnal', 'explanation', 'learns'));
     }
 
     public function show($id)
@@ -94,6 +100,7 @@ class LandingController extends Controller
     public function view($id)
     {
         $total = 0;
+        $request = Reqknowstat::where('reqknowledge_id','0')->where('user_id',Auth::user()->id)->get();
         $decrypt = decrypt($id);
         $knows = Knowledge::findOrFail($decrypt);
         $categories = Category::all();
@@ -109,7 +116,7 @@ class LandingController extends Controller
         // $request = Reqknowledge::where('knowledge_id', $decrypt)->get();
 
         if (Auth::user()->id == $knows->user->id || Auth::user()->hasRole('super-admin')) {
-            return view('app-landing.knows-detail', compact('knows', 'categories', 'report', 'exsum', 'jurnal', 'explanation', 'total'));
+            return view('app-landing.knows-detail', compact('knows', 'categories', 'report', 'exsum', 'jurnal', 'explanation', 'total', 'request'));
         } else {
             return redirect('/home');
         }
@@ -123,5 +130,56 @@ class LandingController extends Controller
             'user_id' => Auth::user()->id,
         ]);
         return redirect('knowledge/'. encrypt($request->idknow));
+    }
+    
+    public function changepegawai()
+    {
+        $curl = curl_init();
+        $auth_data = array(
+            'Bearer:'.'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiSGVsbG8sIFdvcmxkISIsImV4cGlyZWRfdG9rZW4iOiIyMDI0LTEyLTE4IDA2OjE1OjIwIn0.pv0Hdeu_0vW0LftHdWGkVnFn4J8DNTk3p-m-r2KyfWY',
+        );
+        curl_setopt($curl, CURLOPT_POST, 1);
+        // curl_setopt($curl, CURLOPT_POSTFIELDS, $auth_data);
+        curl_setopt($curl, CURLOPT_URL, 'https://hadir.wachid.dev/api/list-pegawai');
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $auth_data);
+        curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+        $result = curl_exec($curl);
+        if(!$result){die("Connection Failure");}
+        curl_close($curl);
+        $decode = json_decode($result);
+        // return $decode->data;
+        foreach($decode->data as $item){
+            $find = User::where('kopeg',$item->kopeg)->get();
+            // dd($find->count());
+            if($find->count()>0){
+                $data = [
+                    'nik' => $item->unit_name? $item->unit_name : '-',
+                    'name' => $item->full_name? $item->full_name : '-',
+                    'address' => $item->address ? $item->address : 'Malang',
+                    'phone' => $item->phone? $item->phone : '-',
+                    'email' => $item->email? $item->email : '-',
+                    'npwp' => $item->subunit_name ? $item->subunit_name : '-',
+                ];
+                User::where('kopeg', $item->kopeg)->update($data);
+            }else{
+                $data = [
+                    // 'id' => $last ,
+                    'kopeg' => $item->kopeg,
+                    'uuid' => Str::uuid(),
+                    'nik' => $item->unit_name? $item->unit_name : '-',
+                    'name' => $item->full_name? $item->full_name : '-',
+                    'birth' => date('Y-m-d'),
+                    'address' => $item->address ? $item->address : 'Malang',
+                    'phone' => $item->phone? $item->phone : '-',
+                    'email' => $item->email? $item->email : $item->kopeg,
+                    'npwp' => $item->subunit_name ? $item->subunit_name : '-',
+                    'email_verified_at' => date('Y-m-d'),
+                    'password' => \Hash::make('password'),
+                ];
+                User::create($data);
+            }
+        }
+        return 'berhasil';
     }
 }

@@ -21,7 +21,7 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Nama Anggota</th>
-                        <th class="text-center">Email</th>
+                        <th class="text-center">Kopeg</th>
                         <th class="text-center">Akses</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -34,7 +34,7 @@
                                 <td>
                                     {{ $item->name }}
                                 </td>
-                                <td class="text-center">{{ $item->email }}</td>
+                                <td class="text-center">{{ $item->kopeg }}</td>
                                 <td class="text-center">{{ $item->getRoleNames()->first() }}</td>
                                 <td class="text-center">
                                     <button onclick='kirim({{ $item->id }})' class="btn btn-sm btn-danger"
@@ -87,7 +87,7 @@
                     <tr>
                         <th class="text-center">No</th>
                         <th class="text-center">Nama</th>
-                        <th class="text-center">Email</th>
+                        <th class="text-center">Kopeg</th>
                         <th class="text-center">Actions</th>
                     </tr>
                 </thead>
@@ -98,7 +98,7 @@
                             <td>
                                 {{ $item->name }}
                             </td>
-                            <td class="text-center">{{ $item->email }}</td>
+                            <td class="text-center">{{ $item->kopeg }}</td>
                             <td class="text-center">
                                 <button wire:click='tambah({{ $item->id }})' class="btn btn-sm btn-success mb-1">
                                     Super Admin<span class="fw-bold"></span></button><br>

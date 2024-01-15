@@ -32,7 +32,7 @@ class Permission extends Component
     {
         $cari = $this->search;
         return User::doesntHave('roles')->when($cari, function ($query) use ($cari) {
-            return $query->where('name', 'like', '%' . $cari . '%');
+            return $query->whereRaw("LOWER(NAME) LIKE '%" . $cari . "%'");
         })->paginate($this->perPage);
     }
     public function tambah($id){

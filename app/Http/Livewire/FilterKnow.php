@@ -32,7 +32,7 @@ class FilterKnow extends Component
         $divisi = $this->divisi;
         $year = $this->year;
         return Knowledge::where('status', 1)->where('ispublic', 1)->when($cari, function ($query) use ($cari) {
-            return $query->where('title', 'like', '%' . $cari . '%');
+            return $query->whereRaw("LOWER(TITLE) LIKE '%" . $cari . "%'");
         })->when($category, function ($query) use ($category) {
             return $query->where('category_id', $category);
         })->when($ws, function ($query) use ($ws) {

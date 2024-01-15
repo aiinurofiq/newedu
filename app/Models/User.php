@@ -21,6 +21,7 @@ class User extends Authenticatable
     use HasApiTokens;
 
     protected $fillable = [
+        'id',
         'uuid',
         'nik',
         'kopeg',

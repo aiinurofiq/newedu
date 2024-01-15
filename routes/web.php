@@ -55,6 +55,7 @@ use App\Http\Livewire\admin\Requestknowledge;
 use App\Http\Livewire\admin\TopicLivewire;
 use App\Http\Livewire\LearnAll;
 use App\Http\Livewire\Quiz;
+use App\Http\Livewire\admin\Authlogin;
 
 
 /*
@@ -75,6 +76,10 @@ Route::get('/', function () {
 Route::get('/', [LandingController::class, 'index'])->name('welcome');
 Route::get('/all-learning', [LearnAll::class, 'render'])->name('learn-all');
 Route::get('/all-knowledge', [KnowAll::class, 'render'])->name('know-all');
+
+Route::get('/listpegawai', [LandingController::class, 'changepegawai'])->name('listpegawai');
+Route::post('/loginpegawai', [Authlogin::class, 'login'])->name('loginpegawai');
+
 
 Route::post('/dropzone/store', [Learningadmin::class, 'dropzoneStore'])->name('dropzonestore');
 
