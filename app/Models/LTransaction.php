@@ -18,13 +18,14 @@ class LTransaction extends Model
         'lpayment_id',
         'coupon_id',
         'totalamount',
+        'status',
     ];
 
     protected $searchableFields = ['*'];
 
     protected $table = 'l_transactions';
 
-    protected $hidden = ['status'];
+    // protected $hidden = ['status'];
 
     public function user()
     {

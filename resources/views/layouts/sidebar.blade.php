@@ -2,9 +2,9 @@
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="{{ url('/') }}" class="brand-link">
-        <img src="{{ asset('assets/images/logo.png') }}" alt="Vemto Logo" class="brand-image bg-white">
+        <img src="{{ asset('assets/images/logo6.png') }}" alt="Vemto Logo" class="brand-image" style="width: 150px;max-height: 70px;margin-left:2rem">
     </a>
-
+ 
     <!-- Sidebar -->
     <div class="sidebar">
 
@@ -26,19 +26,11 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon icon ion-md-apps"></i>
                         <p>
-                            Apps
+                            Master
                             <i class="nav-icon right icon ion-md-arrow-round-back"></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                            @can('view-any', App\Models\User::class)
-                            <li class="nav-item">
-                                <a href="{{ route('users.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Users</p>
-                                </a>
-                            </li>
-                            @endcan
                             @can('view-any', App\Models\Marital::class)
                             <li class="nav-item">
                                 <a href="{{ route('maritals.index') }}" class="nav-link">
@@ -127,14 +119,6 @@
                                 </a>
                             </li>
                             @endcan
-                            @can('view-any', App\Models\Knowledge::class)
-                            <li class="nav-item">
-                                <a href="{{ route('knowledges.index') }}" class="nav-link">
-                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
-                                    <p>Knowledges</p>
-                                </a>
-                            </li>
-                            @endcan
                             @can('view-any', App\Models\Category::class)
                             <li class="nav-item">
                                 <a href="{{ route('categories.index') }}" class="nav-link">
@@ -159,6 +143,82 @@
                                 </a>
                             </li>
                             @endcan
+                            @can('view-any', App\Models\Categorylearn::class)
+                            <li class="nav-item">
+                                <a href="{{ route('categorylearns.index') }}" class="nav-link">
+                                    <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                    <p>Categorylearns</p>
+                                </a>
+                            </li>
+                            @endcan
+                    </ul>
+                </li>
+
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon icon ion-md-apps"></i>
+                        <p>
+                            Apps
+                            <i class="nav-icon right icon ion-md-arrow-round-back"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        @can('view-any', App\Models\Arsip::class)
+                        <li class="nav-item">
+                            <a href="{{ route('arsips.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Arsips</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('view-any', App\Models\User::class)
+                        <li class="nav-item">
+                            <a href="{{ route('users.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Users</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('view-any', App\Models\Knowledge::class)
+                        <li class="nav-item">
+                            <a href="{{ route('knowledges.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Knowledges</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('view-any', App\Models\Learning::class)
+                        <li class="nav-item">
+                            <a href="{{ route('learnings.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Learnings</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('view-any', App\Models\Coupon::class)
+                        <li class="nav-item">
+                            <a href="{{ route('coupons.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Coupons</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('view-any', App\Models\LTransaction::class)
+                        <li class="nav-item">
+                            <a href="{{ route('l-transactions.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>L Transactions</p>
+                            </a>
+                        </li>
+                        @endcan
+                        @can('view-any', App\Models\Lpayment::class)
+                        <li class="nav-item">
+                            <a href="{{ route('lpayments.index') }}" class="nav-link">
+                                <i class="nav-icon icon ion-md-radio-button-off"></i>
+                                <p>Lpayments</p>
+                            </a>
+                        </li>
+                        @endcan
                     </ul>
                 </li>
 

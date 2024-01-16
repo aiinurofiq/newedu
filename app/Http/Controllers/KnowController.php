@@ -23,11 +23,9 @@ class KnowController extends Controller
     {
         $auth = auth()->user();
         $knowledges = Knowledge::where('user_id', $auth->id)->get();
-        $users = User::pluck('name', 'id');
-        $topics = Topic::pluck('name', 'id');
-        $categories = Category::pluck('name', 'id');
+        $categories = Category::all();
 
-        return view('app-landing.my-know', compact('knowledges', 'categories', 'users', 'topics'));
+        return view('app-landing.my-know', compact('knowledges', 'categories'));
     }
 
     /**
@@ -42,7 +40,7 @@ class KnowController extends Controller
         $categories = Category::pluck('name', 'id');
 
         return view(
-            'app-landing.my-know',
+            'app.knowledges.create',
             compact('users', 'topics', 'categories')
         );
     }
@@ -64,7 +62,7 @@ class KnowController extends Controller
         $knowledge = Knowledge::create($validated);
 
         return redirect()
-            ->route('app-landing.my-know', $knowledge)
+            ->route('knowledges.edit', $knowledge)
             ->withSuccess(__('crud.common.created'));
     }
 
@@ -75,7 +73,7 @@ class KnowController extends Controller
     {
         $this->authorize('view', $knowledge);
 
-        return view('app-landing.my-know', compact('knowledge'));
+        return view('app.knowledges.show', compact('knowledge'));
     }
 
     /**
@@ -90,7 +88,7 @@ class KnowController extends Controller
         $categories = Category::pluck('name', 'id');
 
         return view(
-            'app-landing.my-know',
+            'app.knowledges.edit',
             compact('knowledge', 'users', 'topics', 'categories')
         );
     }
@@ -116,7 +114,7 @@ class KnowController extends Controller
         $knowledge->update($validated);
 
         return redirect()
-            ->route('app-landing.my-know', $knowledge)
+            ->route('knowledges.edit', $knowledge)
             ->withSuccess(__('crud.common.saved'));
     }
 
@@ -136,7 +134,7 @@ class KnowController extends Controller
         $knowledge->delete();
 
         return redirect()
-            ->route('app-landing.my-know')
+            ->route('knowledges.index')
             ->withSuccess(__('crud.common.removed'));
     }
 }

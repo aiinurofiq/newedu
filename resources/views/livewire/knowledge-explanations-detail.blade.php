@@ -52,7 +52,7 @@
                         @if($editing && $explanation->file)
                         <div class="mt-2">
                             <a
-                                href="{{ \Storage::url($explanation->file) }}"
+                                href="{{ asset(\Storage::url($explanation->file)) }}"
                                 target="_blank"
                                 ><i class="icon ion-md-download"></i
                                 >&nbsp;Download</a
@@ -115,7 +115,7 @@
                     <td class="text-left">
                         @if($explanation->file)
                         <a
-                            href="{{ \Storage::url($explanation->file) }}"
+                            href="{{ asset(\Storage::url($explanation->file)) }}"
                             target="blank"
                             ><i class="icon ion-md-download"></i
                             >&nbsp;Download</a

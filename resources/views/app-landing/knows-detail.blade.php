@@ -1,533 +1,647 @@
 @extends('layouts-landing.app')
 @section('content-landing')
-<main>
-    <section class="py-0 pb-lg-5">
-      <div class="container">
-        <div class="row g-3">
-          <div class="col-12">
-              <div class="card overflow-hidden h-200px h-xl-600px rounded-3">
-                  <img src="{{ $knows->photo ? \Storage::url($knows->photo) : '' }}" alt="">
-              </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="pt-0">
-      <div class="container">
-        <div class="row g-lg-5">
-          <div class="col-lg-12">
-            <div class="row g-4">
-              <div class="col-12">
-                <h1>
-                  {{$knows->title}}
-                </h1>
-                <ul class="list-inline mb-0">
-                  <li class="list-inline-item h6 me-3 mb-1 mb-sm-0">
-                    <i class="fa-solid fa-circle-check"></i>
-                    <i class="fas fa-clipboard-check text-warning me-2"></i>{{$knows->category->name}}
-                  </li>
-                  <li class="list-inline-item h6 me-3 mb-1 mb-sm-0">
-                    <i class="fas fa-clipboard-check text-success me-2"></i>{{$knows->topic->name}}
-                  </li>
-                  <li class="list-inline-item h6 me-3 mb-1 mb-sm-0">
-                    <i class="fas fa-user-graduate text-orange me-2"></i>By: {{$knows->writer}}
-                  </li>
-                  <li class="list-inline-item h6 me-3 mb-1 mb-sm-0">
-                    <i class="fas fa-clock text-orange me-2"></i>Created at: {{$knows->created_at}}
-                  </li>
-                </ul>
-              </div>
-              <div class="col-12">
-                <div
-                  class="tab-content pt-4 px-3"
-                  id="course-pills-tabContent">
-                  <div
-                    class="tab-pane fade show active"
-                    id="course-pills-1"
-                    role="tabpanel"
-                    aria-labelledby="course-pills-tab-1">
-                    <h5 class="mb-3">Knowledge Abstrak</h5>
-                    <p class="mb-3">
-                      {{$knows->abstract}}
-                    </p>
-                  </div>
+    <main>
+        <section class="py-0 pb-lg-5">
+            <div class="container">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="card overflow-hidden h-200px h-xl-600px rounded-3">
+                            <img src="{{ $knows->photo ? asset(\Storage::url($knows->photo)) : '' }}" alt="">
+                        </div>
+                    </div>
                 </div>
-              </div>
             </div>
-          </div>
-          <div class="col-lg-12">
-            <div class="offcanvas-body p-lg-0">
-              {{-- Report --}}
-              @if(!empty($report->file))
-              <div class="col">
-                <div class="accordion accordion-icon accordion-bg-light" id="accordionExample2">
-                  <div class="accordion-item mb-3">
-                    <h6 class="accordion-header font-base" id="heading-1">
-                      <a class="accordion-button fw-bold rounded collapsed d-block" href="#collapse-1" data-bs-toggle="collapse" data-bs-target="#collapse-1" aria-expanded="false" aria-controls="collapse-1">
-                        <span class="mb-0">Report</span>
-                        <span class="small d-block mt-1"> @if ($report) ({{ $report->where('knowledge_id', $knows->id)->count() }} File) @else (0 File) @endif </span>
-                      </a>
-                    </h6>
-                    <div id="collapse-1" class="accordion-collapse collapse" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
-                      <div class="accordion-body mt-3">
-                        <div class="vstack gap-3">
-                          <div class="overflow-hidden">
-                            <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
+        </section>
+        <section class="pt-0">
+            <div class="container">
+                <div class="row g-lg-5">
+                    <div class="col-lg-12">
+                        <div class="row g-4">
+                            <div class="col-12">
+                                <h1>
+                                    {{ $knows->title }}
+                                </h1>
+                                <ul class="list-inline mb-0">
+                                    <li class="list-inline-item h6 me-3 mb-1 mb-sm-0">
+                                        <i class="fa-solid fa-circle-check"></i>
+                                        <i class="fas fa-clipboard-check text-warning me-2"></i>{{ $knows->category->name }}
+                                    </li>
+                                    <li class="list-inline-item h6 me-3 mb-1 mb-sm-0">
+                                        <i class="fas fa-clipboard-check text-success me-2"></i>{{ $knows->topic->name }}
+                                    </li>
+                                    <li class="list-inline-item h6 me-3 mb-1 mb-sm-0">
+                                        <i class="fas fa-user-graduate text-orange me-2"></i>By: {{ $knows->writer }}
+                                    </li>
+                                    <li class="list-inline-item h6 me-3 mb-1 mb-sm-0">
+                                        <i class="fas fa-clock text-orange me-2"></i>Created at: {{ $knows->created_at }}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-8">
+                                <div class="tab-content pt-4 px-3">
+                                    <div class="tab-pane fade show active" id="course-pills-1" role="tabpanel"
+                                        aria-labelledby="course-pills-tab-1">
+                                        <h5 class="mb-3">Knowledge Abstrak</h5>
+                                        <p class="mb-3">
+                                            {{ $knows->abstract }}
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="tab-content pt-4 px-3 d-none" id="course-pills-tabContent">
+                                    <h5 class="mb-3" id='titlemodules'>Abstract Knowledge</h5>
+                                    <div id="gambar" class="d-none">
+                                        <img id='changeimage'
+                                            src="{{ $knows->photo ? asset(\Storage::url($knows->photo)) : '' }}"
+                                            alt="">
+                                    </div>
+                                    <iframe id="youtube" class="d-none" width="100%" height="500"
+                                        src="https://www.youtube.com/embed/0clqrvUTCRk?si=eovY5H6cpPLb2mBs"
+                                        title="YouTube video player" frameborder="0"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowfullscreen></iframe>
+                                    <div id="filepdf" class="text-center">
+                                        <canvas id="the-canvas"
+                                            style="border: 1px solid black;
+                                        direction: ltr; width:100%"></canvas>
+                                        <div>
+                                            <button id="prev">Previous</button>
+                                            <button id="next">Next</button>
+                                            &nbsp; &nbsp;
+                                            <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+                                        </div>
+                                    </div>
+                                    <div class="plyr__video-embed" id="youtuber">
+                                        <iframe src="https://www.youtube.com/embed/0clqrvUTCRk?si=eovY5H6cpPLb2mBs"
+                                            allowfullscreen allowtransparency allow="autoplay"></iframe>
+                                    </div>
+                                    <div class="mediaplayer d-none">
+                                        <div class="col-12">
+                                            <div class="video-player rounded-3">
+                                                <video id="videotirta" controls crossorigin="anonymous" playsinline
+                                                    poster="{{ asset('assets/images/videos/poster.jpg') }}">
+                                                    <source id="mediadetail"
+                                                        src="{{ asset('assets/images/videos/720p.mp4') }}" type="video/mp4">
+                                                </video>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 d-lg-none">
+                                            <button class="btn btn-primary mb-3" type="button" data-bs-toggle="offcanvas"
+                                                data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+                                                <i class="bi bi-camera-video me-1"></i> Playlist </button>
+                                        </div>
+                                    </div>
+                                    <p class="mb-3 mt-3" id="descriptionmodules">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                @if ($jurnal || $exsum || $report || $explanation)
+                                    <h4 class="mb-3">Modules</h4>
+                                    @if ($jurnal->count() > 0)
+                                        <div class="accordion accordion-icon accordion-bg-light">
+                                            <div class="accordion-item mb-3">
+                                                <h6 class="accordion-header font-base ">
+                                                    <a class="accordion-button fw-bold rounded collapsed d-block "
+                                                        id="heading-1" href="#collapse-1" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse-1" aria-expanded="false"
+                                                        aria-controls="collapse-1">
+                                                        <span class="mb-0">Jurnals</span>
+                                                        <span class="small d-block mt-1">({{ $jurnal->count() }}
+                                                            Jurnal)</span>
+                                                    </a>
+                                                </h6>
+                                                <div id="collapse-1" class="accordion-collapse collapse"
+                                                    aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
+                                                    <div class="accordion-body mt-3">
+                                                        <div class="vstack gap-3">
+                                                            @foreach ($jurnal as $items)
+                                                                <div id="header-j{{ $items->id }}" class='header'>
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-center">
+                                                                        <div class="position-relative d-flex align-items-center changeimg"
+                                                                            data-id="{{ $items->id }}" data-type="j"
+                                                                            data-img="{{ explode('|', $items->file)[0] }}">
+                                                                            <div href="#"
+                                                                                id="btn-j{{ $items->id }}"
+                                                                                class="btn btn-danger-soft btn-round btn-sm mb-0 ">
+                                                                                <i class="fas fa-play me-0"></i>
+                                                                            </div>
+                                                                            <span
+                                                                                class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-200px">Jurnal
+                                                                                {{ $loop->index + 1 }}</span>
+                                                                        </div>
+                                                                        @if ($request->count())
+                                                                            @if ($approve ?? 0)
+                                                                                <span><a href="{{ asset(\Storage::url(explode('|', $items->file)[0])) }}"
+                                                                                        class="btn btn-primary-soft btn-round btn-sm mb-0 "
+                                                                                        download='{{ explode('|', $items->file)[1] }}'>
+                                                                                        <i
+                                                                                            class="fas fa-download me-0"></i>
+                                                                                    </a></span>
+                                                                            @endif
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                                @if ($jurnal || $exsum || $report || $explanation)
+                                    @if ($exsum->count() > 0)
+                                        <div class="accordion accordion-icon accordion-bg-light">
+                                            <div class="accordion-item mb-3">
+                                                <h6 class="accordion-header font-base ">
+                                                    <a class="accordion-button fw-bold rounded collapsed d-block "
+                                                        id="heading-2" href="#collapse-2" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse-2" aria-expanded="false"
+                                                        aria-controls="collapse-2">
+                                                        <span class="mb-0">Exsum</span>
+                                                        <span class="small d-block mt-1">({{ $exsum->count() }}
+                                                            Exsum)</span>
+                                                    </a>
+                                                </h6>
+                                                <div id="collapse-2" class="accordion-collapse collapse"
+                                                    aria-labelledby="heading-2" data-bs-parent="#accordionExample2">
+                                                    <div class="accordion-body mt-3">
+                                                        <div class="vstack gap-3">
+                                                            @foreach ($exsum as $items)
+                                                                <div id="header-exs{{ $items->id }}" class='header'>
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-center">
+                                                                        <div class="position-relative d-flex align-items-center changeimg"
+                                                                            data-id="{{ $items->id }}" data-type="exs"
+                                                                            data-img="{{ explode('|', $items->file)[0] }}">
+                                                                            <div href="#"
+                                                                                id="btn-exs{{ $items->id }}"
+                                                                                class="btn btn-danger-soft btn-round btn-sm mb-0 ">
+                                                                                <i class="fas fa-play me-0"></i>
+                                                                            </div>
+                                                                            <span
+                                                                                class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-200px">Exsum
+                                                                                {{ $loop->index + 1 }}</span>
+                                                                        </div>
+                                                                        @if ($request->count())
+                                                                            @if ($approve ?? 0)
+                                                                                <span><a href="{{ asset(\Storage::url(explode('|', $items->file)[0])) }}"
+                                                                                        class="btn btn-primary-soft btn-round btn-sm mb-0 "
+                                                                                        download='{{ explode('|', $items->file)[1] }}'>
+                                                                                        <i
+                                                                                            class="fas fa-download me-0"></i>
+                                                                                    </a></span>
+                                                                            @endif
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                                @if ($jurnal || $exsum || $report || $explanation)
+                                    @if ($report->count() > 0)
+                                        <div class="accordion accordion-icon accordion-bg-light">
+                                            <div class="accordion-item mb-3">
+                                                <h6 class="accordion-header font-base ">
+                                                    <a class="accordion-button fw-bold rounded collapsed d-block "
+                                                        id="heading-3" href="#collapse-3" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse-3" aria-expanded="false"
+                                                        aria-controls="collapse-3">
+                                                        <span class="mb-0">Report</span>
+                                                        <span class="small d-block mt-1">({{ $report->count() }}
+                                                            Report)</span>
+                                                    </a>
+                                                </h6>
+                                                <div id="collapse-3" class="accordion-collapse collapse"
+                                                    aria-labelledby="heading-3" data-bs-parent="#accordionExample2">
+                                                    <div class="accordion-body mt-3">
+                                                        <div class="vstack gap-3">
+                                                            @foreach ($report as $items)
+                                                                <div id="header-re{{ $items->id }}" class='header'>
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-center">
+                                                                        <div class="position-relative d-flex align-items-center changeimg"
+                                                                            data-id="{{ $items->id }}" data-type="re"
+                                                                            data-img="{{ explode('|', $items->file)[0] }}">
+                                                                            <div href="#"
+                                                                                id="btn-re{{ $items->id }}"
+                                                                                class="btn btn-danger-soft btn-round btn-sm mb-0 ">
+                                                                                <i class="fas fa-play me-0"></i>
+                                                                            </div>
+                                                                            <span
+                                                                                class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-200px">Report
+                                                                                {{ $loop->index + 1 }}</span>
+                                                                        </div>
+                                                                        @if ($request->count())
+                                                                            @if ($approve ?? 0)
+                                                                                <span><a href="{{ asset(\Storage::url(explode('|', $items->file)[0])) }}"
+                                                                                        class="btn btn-primary-soft btn-round btn-sm mb-0 "
+                                                                                        download='{{ explode('|', $items->file)[1] }}'>
+                                                                                        <i
+                                                                                            class="fas fa-download me-0"></i>
+                                                                                    </a></span>
+                                                                            @endif
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                                @if ($jurnal || $exsum || $report || $explanation)
+                                    @if ($explanation->count() > 0)
+                                        <div class="accordion accordion-icon accordion-bg-light">
+                                            <div class="accordion-item mb-3">
+                                                <h6 class="accordion-header font-base ">
+                                                    <a class="accordion-button fw-bold rounded collapsed d-block "
+                                                        id="heading-4" href="#collapse-4" data-bs-toggle="collapse"
+                                                        data-bs-target="#collapse-4" aria-expanded="false"
+                                                        aria-controls="collapse-4">
+                                                        <span class="mb-0">Explanation</span>
+                                                        <span class="small d-block mt-1">({{ $explanation->count() }}
+                                                            Explanation)</span>
+                                                    </a>
+                                                </h6>
+                                                <div id="collapse-4" class="accordion-collapse collapse"
+                                                    aria-labelledby="heading-4" data-bs-parent="#accordionExample2">
+                                                    <div class="accordion-body mt-3">
+                                                        <div class="vstack gap-3">
+                                                            @foreach ($explanation as $items)
+                                                                <div id="header-exp{{ $items->id }}" class='header'>
+                                                                    <div
+                                                                        class="d-flex justify-content-between align-items-center">
+                                                                        <div class="position-relative d-flex align-items-center changeimg"
+                                                                            data-id="{{ $items->id }}" data-type="exp"
+                                                                            data-img="{{ explode('|', $items->file)[0] }}">
+                                                                            <div href="#"
+                                                                                id="btn-exp{{ $items->id }}"
+                                                                                class="btn btn-danger-soft btn-round btn-sm mb-0 ">
+                                                                                <i class="fas fa-play me-0"></i>
+                                                                            </div>
+                                                                            <span
+                                                                                class="d-inline-block text-truncate ms-2 mb-0 h6 fw-light w-200px">Explanation
+                                                                                {{ $loop->index + 1 }}</span>
+                                                                        </div>
+                                                                        @if ($request->count())
+                                                                            @if ($approve ?? 0)
+                                                                                <span><a href="{{ asset(\Storage::url(explode('|', $items->file)[0])) }}"
+                                                                                        class="btn btn-primary-soft btn-round btn-sm mb-0 "
+                                                                                        download='{{ explode('|', $items->file)[1] }}'>
+                                                                                        <i
+                                                                                            class="fas fa-download me-0"></i>
+                                                                                    </a></span>
+                                                                            @endif
+                                                                        @endif
+                                                                    </div>
+                                                                </div>
+                                                            @endforeach
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                                @if (Request::segment(1) != 'view')
+                                    @if ($request->count())
+                                        <div class="mt-4">
+                                            <h4 class="mb-3">Request Knowledge</h4>
+                                            <div class="d-grid gap-2">
+                                                @if ($approve)
+                                                    <button href="#" data-bs-toggle="modal" data-bs-target=""
+                                                        class="btn btn-success" type="button"><i
+                                                            class="bi bi-question-circle-fill"></i>
+                                                        Approved Request</button>
+                                                @else
+                                                    <button href="#" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal"
+                                                        class="btn btn-{{ $checkreject->status ? 'danger' : 'warning' }}"
+                                                        type="button"><i class="bi bi-question-circle-fill"></i>
+                                                        {{ $checkreject->status ? 'Send' : 'Waiting' }} Request</button>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    @else
+                                        <div class="mt-4">
+                                            <h4 class="mb-3">Request Knowledge</h4>
+                                            <div class="d-grid gap-2">
+                                                <button href="#" data-bs-toggle="modal"
+                                                    data-bs-target="#exampleModal" class="btn btn-primary"
+                                                    type="button"><i class="bi bi-question-circle-fill"></i> Send
+                                                    Request</button>
+                                            </div>
+                                        </div>
+                                    @endif
+                                @endif
+                            </div>
                         </div>
-                        <div class="d-flex justify-content-between align-items-center"> @if ($report) <div>
-                            <button id="prev-report" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4">Previous</button>
-                            <button id="next-report" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4">Next</button> &nbsp; &nbsp; <span>Page: <span id="page_num-report"></span> / <span id="page_count-report"></span>
-                            </span>
-                          </div>
-                          <div style="max-height: 1080px; overflow-y: auto;">
-                            <canvas id="the-canvas-report"></canvas>
-                          </div> @else Data Belum Tersedia @endif
-                        </div>
-                      </div>
                     </div>
-                  </div>
+
                 </div>
-              </div>
-              @endif
-              {{-- Jurnal --}}
-              @if(!empty($jurnal->file))
-              <div class="col">
-                <div class="accordion accordion-icon accordion-bg-light" id="accordionExample2">
-                  <div class="accordion-item mb-3">
-                    <h6 class="accordion-header font-base" id="heading-1">
-                      <a class="accordion-button fw-bold rounded collapsed d-block" href="#collapse-2" data-bs-toggle="collapse" data-bs-target="#collapse-2" aria-expanded="false" aria-controls="collapse-2">
-                        <span class="mb-0">Jurnal</span>
-                        <span class="small d-block mt-1"> @if ($jurnal) ({{ $jurnal->where('knowledge_id', $knows->id)->count() }} File) @else (0 File) @endif </span>
-                      </a>
-                    </h6>
-                    <div id="collapse-2" class="accordion-collapse collapse" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
-                      <div class="accordion-body mt-3">
-                        <div class="vstack gap-3">
-                          <div class="overflow-hidden">
-                            <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center"> @if ($jurnal) <div>
-                            <button id="prev-jurnal" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4">Previous</button>
-                            <button id="next-jurnal" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4">Next</button> &nbsp; &nbsp; <span>Page: <span id="page_num-jurnal"></span> / <span id="page_count-jurnal"></span>
-                            </span>
-                          </div>
-                          <div style="max-height: 1080px; overflow-y: auto;">
-                            <canvas id="the-canvas-jurnal"></canvas>
-                          </div> @else Data Belum Tersedia @endif
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @endif
-              {{-- Exsum --}}
-              @if(!empty($exsum->file))
-              <div class="col">
-                <div class="accordion accordion-icon accordion-bg-light" id="accordionExample2">
-                  <div class="accordion-item mb-3">
-                    <h6 class="accordion-header font-base" id="heading-1">
-                      <a class="accordion-button fw-bold rounded collapsed d-block" href="#collapse-3" data-bs-toggle="collapse" data-bs-target="#collapse-3" aria-expanded="false" aria-controls="collapse-3">
-                        <span class="mb-0">Exsum</span>
-                        <span class="small d-block mt-1"> @if ($exsum) ({{ $exsum->where('knowledge_id', $knows->id)->count() }} File) @else (0 File) @endif </span>
-                      </a>
-                    </h6>
-                    <div id="collapse-3" class="accordion-collapse collapse" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
-                      <div class="accordion-body mt-3">
-                        <div class="vstack gap-3">
-                          <div class="overflow-hidden">
-                            <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center"> @if ($exsum) <div>
-                            <button id="prev-exsum" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4">Previous</button>
-                            <button id="next-exsum" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4">Next</button> &nbsp; &nbsp; <span>Page: <span id="page_num-exsum"></span> / <span id="page_count-exsum"></span>
-                            </span>
-                          </div>
-                          <div style="max-height: 1080px; overflow-y: auto;">
-                            <canvas id="the-canvas-exsum"></canvas>
-                          </div> @else Data Belum Tersedia @endif
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @endif
-              {{-- Explanation --}}
-              @if(!empty($explanation->file))
-              <div class="col">
-                <div class="accordion accordion-icon accordion-bg-light" id="accordionExample2">
-                  <div class="accordion-item mb-3">
-                    <h6 class="accordion-header font-base" id="heading-1">
-                      <a class="accordion-button fw-bold rounded collapsed d-block" href="#collapse-4" data-bs-toggle="collapse" data-bs-target="#collapse-4" aria-expanded="false" aria-controls="collapse-4">
-                        <span class="mb-0">Explanation</span>
-                        <span class="small d-block mt-1"> @if ($explanation) ({{ $explanation->where('knowledge_id', $knows->id)->count() }} File) @else (0 File) @endif </span>
-                      </a>
-                    </h6>
-                    <div id="collapse-4" class="accordion-collapse collapse" aria-labelledby="heading-1" data-bs-parent="#accordionExample2">
-                      <div class="accordion-body mt-3">
-                        <div class="vstack gap-3">
-                          <div class="overflow-hidden">
-                            <div class="progress-bar bg-primary aos" role="progressbar" data-aos="slide-right" data-aos-delay="200" data-aos-duration="1000" data-aos-easing="ease-in-out" style="width: 30%" aria-valuenow="30" aria-valuemin="0" aria-valuemax="100"></div>
-                          </div>
-                        </div>
-                        <div class="d-flex justify-content-between align-items-center"> @if ($explanation) <div>
-                            <button id="prev-explanation" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4">Previous</button>
-                            <button id="next-explanation" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-4">Next</button> &nbsp; &nbsp; <span>Page: <span id="page_num-explanation"></span> / <span id="page_count-explanation"></span>
-                            </span>
-                          </div>
-                          <div style="max-height: 1080px; overflow-y: auto;">
-                            <canvas id="the-canvas-explanation"></canvas>
-                          </div> @else Data Belum Tersedia @endif
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              @endif
-                 
             </div>
-          </div>
+        </section>
+    </main>
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <form name="add-blog-post-form" id="add-blog-post-form" method="post"
+                    action="{{ url('requestlanding') }}">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Request Knowledge</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        @if ($request->count())
+                            @if ($checkreject->status == 2)
+                                <div class="row mb-3">
+                                    <div class="col-12 mt-2">Note Sebelum</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        @if ($checkreject->status == 2)
+                                            <input type="text" class="form-control"
+                                                value="{{ $checkreject->description }}" aria-label="Username"
+                                                aria-describedby="basic-addon1" disabled>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12 mt-2">Balasan</div>
+                                </div>
+                                <div class="row mb-3">
+                                    <div class="col-12">
+                                        @if ($request->count())
+                                            @if ($checkreject->status == 2)
+                                                <input type="text" class="form-control"
+                                                    value="{{ $checkreject->comment }}" aria-label="Username"
+                                                    aria-describedby="basic-addon1" disabled>
+                                            @endif
+                                        @endif
+                                    </div>
+                                </div>
+                            @endif
+                        @endif
+                        <div class="row mb-3">
+                            <div class="col-12 mt-2">Note Request</div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-12">
+                                @if ($request->count())
+                                    <input name='requestknow' id='requestknow' type="text" class="form-control"
+                                        value="{{ $checkreject->status == 0 ? $checkreject->description : '' }}"
+                                        aria-label="Username" aria-describedby="basic-addon1"
+                                        {{ $checkreject->status == 2 || $checkreject->status == 1 ? '' : 'disabled' }}>
+                                @else
+                                    <input name='requestknow' id='requestknow' type="text" class="form-control"
+                                        value="" aria-label="Username" aria-describedby="basic-addon1">
+                                @endif
+                                <input name='idknow' id='idknow' type="text" class="form-control d-none"
+                                    value="{{ $knows->id }}" aria-label="Username" aria-describedby="basic-addon1">
+                            </div>
+                        </div>
+                        @if ($request->count())
+                            @if ($checkreject->status == 2 || $checkreject->status == 1)
+                                <hr>
+                                <p class="ms-2"><span class="fw-bold">Note :</span> Silahkan mengisi note sebagai alasan
+                                    dalam akses file knowledge dan menunggu approve dari kami. Terima Kasih!</p>
+                            @endif
+                        @else
+                            <hr>
+                            <p class="ms-2"><span class="fw-bold">Note :</span> Silahkan mengisi note sebagai alasan
+                                dalam akses file knowledge dan menunggu approve dari kami. Terima Kasih!</p>
+                        @endif
+
+                    </div>
+                    <div class="modal-footer">
+                        @if ($request->count())
+                            @if ($checkreject->status == 2 || $checkreject->status == 1)
+                                <button type="submit" class="btn btn-primary">Send</button>
+                            @endif
+                        @else
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        @endif
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </form>
+            </div>
         </div>
-      </div>
-    </section>
-</main>
-<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-{{-- Report --}}
-@if(!empty($report->file))
-<script>
-  var reportUrl = '{{ url(\Storage::url($report->file)) }}';
+    </div>
+    @push('script')
+        <script>
+            var pdfDoc = null,
+                pageNum = 1,
+                pageRendering = false,
+                pageNumPending = null,
+                scale = 1,
+                canvas = document.getElementById('the-canvas'),
+                ctx = canvas.getContext('2d');
+            // var url = 'https://s2.q4cdn.com/170666959/files/Blank.pdf';
+            var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/web/compressed.tracemonkey-pldi-09.pdf';
 
-  var pdfjsLib = window['pdfjs-dist/build/pdf'];
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+            // Loaded via <script> tag, create shortcut to access PDF.js exports.
+            var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
-  var reportPdfDoc = null,
-    pageNum = 1,
-    pageRendering = false,
-    pageNumPending = null,
-    scale = 1.8;
+            // The workerSrc property shall be specified.
+            pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
 
-  var reportCanvas = document.getElementById('the-canvas-report');
-  var reportCtx = reportCanvas.getContext('2d');
-  var reportTotalPages = 0;
 
-  function renderPage(num, pdfDoc, canvas, ctx, pageCountElement) {
-    pageRendering = true;
-    pdfDoc.getPage(num).then(function(page) {
-      var viewport = page.getViewport({ scale: scale });
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
+            /**
+             * Get page info from document, resize canvas accordingly, and render page.
+             * @param num Page number.
+             */
+            function renderPage(num) {
+                pageRendering = true;
+                // Using promise to fetch the page
+                pdfDoc.getPage(num).then(function(page) {
+                    var viewport = page.getViewport({
+                        scale: scale
+                    });
+                    canvas.height = viewport.height;
+                    canvas.width = viewport.width;
 
-      var renderContext = {
-        canvasContext: ctx,
-        viewport: viewport,
-      };
-      var renderTask = page.render(renderContext);
+                    // Render PDF page into canvas context
+                    var renderContext = {
+                        canvasContext: ctx,
+                        viewport: viewport
+                    };
+                    var renderTask = page.render(renderContext);
 
-      renderTask.promise.then(function() {
-        pageRendering = false;
-        if (pageNumPending !== null) {
-          renderPage(pageNumPending, pdfDoc, canvas, ctx, pageCountElement);
-          pageNumPending = null;
-        }
-      });
-    });
+                    // Wait for rendering to finish
+                    renderTask.promise.then(function() {
+                        pageRendering = false;
+                        if (pageNumPending !== null) {
+                            // New page rendering is pending
+                            renderPage(pageNumPending);
+                            pageNumPending = null;
+                        }
+                    });
+                });
 
-    pageCountElement.textContent = num;
-  }
+                // Update page counters
+                document.getElementById('page_num').textContent = num;
+            }
 
-  function queueRenderPage(num, pdfDoc, canvas, ctx, pageCountElement) {
-    if (pageRendering) {
-      pageNumPending = num;
-    } else {
-      renderPage(num, pdfDoc, canvas, ctx, pageCountElement);
-    }
-  }
+            /**
+             * If another page rendering in progress, waits until the rendering is
+             * finised. Otherwise, executes rendering immediately.
+             */
+            function queueRenderPage(num) {
+                if (pageRendering) {
+                    pageNumPending = num;
+                } else {
+                    renderPage(num);
+                }
+            }
 
-  function onPrevPage(event) {
-    if (pageNum <= 1) {
-      return;
-    }
-    pageNum--;
-    queueRenderPage(pageNum, reportPdfDoc, reportCanvas, reportCtx, document.getElementById('page_count-report'));
-  }
+            /**
+             * Displays previous page.
+             */
+            function onPrevPage() {
+                if (pageNum <= 1) {
+                    return;
+                }
+                pageNum--;
+                queueRenderPage(pageNum);
+            }
+            document.getElementById('prev').addEventListener('click', onPrevPage);
 
-  function onNextPage(event) {
-    if (pageNum >= reportTotalPages) {
-      return;
-    }
-    pageNum++;
-    queueRenderPage(pageNum, reportPdfDoc, reportCanvas, reportCtx, document.getElementById('page_count-report'));
-  }
+            /**
+             * Displays next page.
+             */
+            function onNextPage() {
+                if (pageNum >= pdfDoc.numPages) {
+                    return;
+                }
+                pageNum++;
+                queueRenderPage(pageNum);
+            }
+            document.getElementById('next').addEventListener('click', onNextPage);
 
-  function loadPdf(url, canvas, ctx, pageCountElement) {
-    pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
-      reportTotalPages = pdfDoc.numPages;
-      pageCountElement.textContent = reportTotalPages;
-      reportPdfDoc = pdfDoc;
+            /**
+             * Asynchronously downloads PDF.
+             */
+            pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+                pdfDoc = pdfDoc_;
+                document.getElementById('page_count').textContent = pdfDoc.numPages;
 
-      renderPage(pageNum, pdfDoc, canvas, ctx, pageCountElement);
-    });
-  }
+                // Initial/first page rendering
+                renderPage(pageNum);
+            });
+            $(document).ready(function() {
+                const player2 = new Plyr('#youtuber');
+                window.player = player2;
+                const player = new Plyr('video');
+                window.player = player;
+                $(".changeimg").on("click", function() {
+                    player.stop();
+                    player2.stop();
+                    $('#course-pills-tabContent').removeClass('d-none')
+                    $('.btn-round').removeClass('btn-success')
+                    $('.btn-round').addClass('btn-danger-soft')
+                    $('.header').removeClass("p-2 bg-success bg-opacity-10 rounded-3")
+                    $('#gambar').addClass('d-none')
+                    $('#youtuber').addClass('d-none')
+                    $('#filepdf').addClass('d-none')
+                    $('.mediaplayer').addClass('d-none')
+                    let dataIdheader = $(this).attr("data-id");
+                    let typemod = $(this).attr("data-type");
+                    let dataId = $(this).attr("data-img");
+                    let videoembed = $(this).attr("data-url");
+                    $("#header-" + typemod + dataIdheader).toggleClass("p-2 bg-success bg-opacity-10 rounded-3")
+                    // $("#duration-" + dataIdheader).html("Playing")
+                    // alert("#btn-"+dataIdheader)
+                    $("#btn-" + typemod + dataIdheader).removeClass("btn-danger-soft")
+                    $("#btn-" + typemod + dataIdheader).addClass("btn-success")
+                    if (videoembed) {
+                        $('#youtuber').removeClass('d-none')
+                        $('#youtuber').attr("src",
+                            videoembed);
+                        player2.source = {
+                            type: 'video',
+                            sources: [{
+                                src: videoembed,
+                                provider: 'youtube',
+                            }, ],
+                        };
+                    } else {
+                        var img = dataId.replace('public', 'storage');
+                        fileExtension = dataId.replace(/^.*\./, '');
+                        switch (fileExtension) {
+                            case 'png':
+                                $('#gambar').removeClass('d-none')
+                                $('#changeimage').attr("src",
+                                    "http://jtlearning.test/" + img);
+                                break;
+                            case 'jpeg':
+                                $('#gambar').removeClass('d-none')
+                                $('#changeimage').attr("src",
+                                    "http://jtlearning.test/" + img);
+                                break;
+                            case 'jpg':
+                                $('#gambar').removeClass('d-none')
+                                $('#changeimage').attr("src",
+                                    "http://jtlearning.test/" + img);
+                                break;
+                            case 'mp4':
+                                $('.mediaplayer').removeClass('d-none')
+                                // player.play();
+                                // $('#mediadetail').attr("src",
+                                //     "http://jtlearning.test/" + img);
+                                src = "http://jtlearning.test/" + img;
+                                type = "video/mp4";
+                                poster = "";
+                                // alert(player)
 
-  document.getElementById('prev-report').addEventListener('click', onPrevPage);
-  document.getElementById('next-report').addEventListener('click', onNextPage);
+                                player.source = {
+                                    type: 'video',
+                                    title: 'Example title',
+                                    sources: [{
+                                        src: src,
+                                        type: type,
+                                        size: 720
+                                    }],
+                                    poster: poster
+                                };
 
-  loadPdf(reportUrl, reportCanvas, reportCtx, document.getElementById('page_count-report'));
-</script>
-@endif
-{{-- Jurnal --}}
-@if(!empty($jurnal->file))
-<script>
-  var jurnalUrl = '{{ url(\Storage::url($jurnal->file)) }}';
+                                // player.play();
+                                break;
+                            case 'pdf':
+                                $('#filepdf').removeClass('d-none')
+                                url = "http://jtlearning.test/" + img;
+                                pageNum = 1;
 
-  var pdfjsLib = window['pdfjs-dist/build/pdf'];
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
+                                pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+                                    pdfDoc = pdfDoc_;
+                                    document.getElementById('page_count').textContent = pdfDoc.numPages;
 
-  var jurnalPdfDoc = null,
-    pageNum = 1,
-    pageRendering = false,
-    pageNumPending = null,
-    scale = 1.8;
+                                    // Initial/first page rendering
+                                    renderPage(pageNum);
+                                });
+                                break;
+                            default:
+                                ele.innerHTML = 'File type: Unknown';
+                        }
+                    }
+                });
+                // setTimeout(
+                //     function() {
+                //         $(".pertama").click();
+                //         $("#pertama").click();
+                //     }, 2000);
+            });
+        </script>
+    @endpush
 
-  var jurnalCanvas = document.getElementById('the-canvas-jurnal');
-  var jurnalCtx = jurnalCanvas.getContext('2d');
-  var jurnalTotalPages = 0;
-
-  function renderPage(num, pdfDoc, canvas, ctx, pageCountElement) {
-    pageRendering = true;
-    pdfDoc.getPage(num).then(function(page) {
-      var viewport = page.getViewport({ scale: scale });
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-
-      var renderContext = {
-        canvasContext: ctx,
-        viewport: viewport,
-      };
-      var renderTask = page.render(renderContext);
-
-      renderTask.promise.then(function() {
-        pageRendering = false;
-        if (pageNumPending !== null) {
-          renderPage(pageNumPending, pdfDoc, canvas, ctx, pageCountElement);
-          pageNumPending = null;
-        }
-      });
-    });
-
-    pageCountElement.textContent = num;
-  }
-
-  function queueRenderPage(num, pdfDoc, canvas, ctx, pageCountElement) {
-    if (pageRendering) {
-      pageNumPending = num;
-    } else {
-      renderPage(num, pdfDoc, canvas, ctx, pageCountElement);
-    }
-  }
-
-  function onPrevPage(event) {
-    if (pageNum <= 1) {
-      return;
-    }
-    pageNum--;
-    queueRenderPage(pageNum, jurnalPdfDoc, jurnalCanvas, jurnalCtx, document.getElementById('page_count-jurnal'));
-  }
-
-  function onNextPage(event) {
-    if (pageNum >= jurnalTotalPages) {
-      return;
-    }
-    pageNum++;
-    queueRenderPage(pageNum, jurnalPdfDoc, jurnalCanvas, jurnalCtx, document.getElementById('page_count-jurnal'));
-  }
-
-  function loadPdf(url, canvas, ctx, pageCountElement) {
-    pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
-      jurnalTotalPages = pdfDoc.numPages;
-      pageCountElement.textContent = jurnalTotalPages;
-      jurnalPdfDoc = pdfDoc;
-
-      renderPage(pageNum, pdfDoc, canvas, ctx, pageCountElement);
-    });
-  }
-
-  document.getElementById('prev-jurnal').addEventListener('click', onPrevPage);
-  document.getElementById('next-jurnal').addEventListener('click', onNextPage);
-
-  loadPdf(jurnalUrl, jurnalCanvas, jurnalCtx, document.getElementById('page_count-jurnal'));
-</script>
-@endif
-{{-- Exsum --}}
-@if(!empty($exsum->file))
-<script>
-  var exsumUrl = '{{ url(\Storage::url($exsum->file)) }}';
-
-  var pdfjsLib = window['pdfjs-dist/build/pdf'];
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-  var exsumPdfDoc = null,
-    pageNum = 1,
-    pageRendering = false,
-    pageNumPending = null,
-    scale = 1.8;
-
-  var exsumCanvas = document.getElementById('the-canvas-exsum');
-  var exsumCtx = exsumCanvas.getContext('2d');
-  var exsumTotalPages = 0;
-
-  function renderPage(num, pdfDoc, canvas, ctx, pageCountElement) {
-    pageRendering = true;
-    pdfDoc.getPage(num).then(function(page) {
-      var viewport = page.getViewport({ scale: scale });
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-
-      var renderContext = {
-        canvasContext: ctx,
-        viewport: viewport,
-      };
-      var renderTask = page.render(renderContext);
-
-      renderTask.promise.then(function() {
-        pageRendering = false;
-        if (pageNumPending !== null) {
-          renderPage(pageNumPending, pdfDoc, canvas, ctx, pageCountElement);
-          pageNumPending = null;
-        }
-      });
-    });
-
-    pageCountElement.textContent = num;
-  }
-
-  function queueRenderPage(num, pdfDoc, canvas, ctx, pageCountElement) {
-    if (pageRendering) {
-      pageNumPending = num;
-    } else {
-      renderPage(num, pdfDoc, canvas, ctx, pageCountElement);
-    }
-  }
-
-  function onPrevPage(event) {
-    if (pageNum <= 1) {
-      return;
-    }
-    pageNum--;
-    queueRenderPage(pageNum, exsumPdfDoc, exsumCanvas, exsumCtx, document.getElementById('page_count-exsum'));
-  }
-
-  function onNextPage(event) {
-    if (pageNum >= exsumTotalPages) {
-      return;
-    }
-    pageNum++;
-    queueRenderPage(pageNum, exsumPdfDoc, exsumCanvas, exsumCtx, document.getElementById('page_count-exsum'));
-  }
-
-  function loadPdf(url, canvas, ctx, pageCountElement) {
-    pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
-      exsumTotalPages = pdfDoc.numPages;
-      pageCountElement.textContent = exsumTotalPages;
-      exsumPdfDoc = pdfDoc;
-
-      renderPage(pageNum, pdfDoc, canvas, ctx, pageCountElement);
-    });
-  }
-
-  document.getElementById('prev-exsum').addEventListener('click', onPrevPage);
-  document.getElementById('next-exsum').addEventListener('click', onNextPage);
-
-  loadPdf(exsumUrl, exsumCanvas, exsumCtx, document.getElementById('page_count-exsum'));
-</script>
-@endif
-{{-- Explanation --}}
-@if(!empty($explanation->file))
-<script>
-  var explanationUrl = '{{ url(\Storage::url($explanation->file)) }}';
-
-  var pdfjsLib = window['pdfjs-dist/build/pdf'];
-  pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-
-  var explanationPdfDoc = null,
-    pageNum = 1,
-    pageRendering = false,
-    pageNumPending = null,
-    scale = 1.8;
-
-  var explanationCanvas = document.getElementById('the-canvas-explanation');
-  var explanationCtx = explanationCanvas.getContext('2d');
-  var explanationTotalPages = 0;
-
-  function renderPage(num, pdfDoc, canvas, ctx, pageCountElement) {
-    pageRendering = true;
-    pdfDoc.getPage(num).then(function(page) {
-      var viewport = page.getViewport({ scale: scale });
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-
-      var renderContext = {
-        canvasContext: ctx,
-        viewport: viewport,
-      };
-      var renderTask = page.render(renderContext);
-
-      renderTask.promise.then(function() {
-        pageRendering = false;
-        if (pageNumPending !== null) {
-          renderPage(pageNumPending, pdfDoc, canvas, ctx, pageCountElement);
-          pageNumPending = null;
-        }
-      });
-    });
-
-    pageCountElement.textContent = num;
-  }
-
-  function queueRenderPage(num, pdfDoc, canvas, ctx, pageCountElement) {
-    if (pageRendering) {
-      pageNumPending = num;
-    } else {
-      renderPage(num, pdfDoc, canvas, ctx, pageCountElement);
-    }
-  }
-
-  function onPrevPage(event) {
-    if (pageNum <= 1) {
-      return;
-    }
-    pageNum--;
-    queueRenderPage(pageNum, explanationPdfDoc, explanationCanvas, explanationCtx, document.getElementById('page_count-explanation'));
-  }
-
-  function onNextPage(event) {
-    if (pageNum >= explanationTotalPages) {
-      return;
-    }
-    pageNum++;
-    queueRenderPage(pageNum, explanationPdfDoc, explanationCanvas, explanationCtx, document.getElementById('page_count-explanation'));
-  }
-
-  function loadPdf(url, canvas, ctx, pageCountElement) {
-    pdfjsLib.getDocument(url).promise.then(function(pdfDoc) {
-      explanationTotalPages = pdfDoc.numPages;
-      pageCountElement.textContent = explanationTotalPages;
-      explanationPdfDoc = pdfDoc;
-
-      renderPage(pageNum, pdfDoc, canvas, ctx, pageCountElement);
-    });
-  }
-
-  document.getElementById('prev-explanation').addEventListener('click', onPrevPage);
-  document.getElementById('next-explanation').addEventListener('click', onNextPage);
-
-  loadPdf(explanationUrl, explanationCanvas, explanationCtx, document.getElementById('page_count-explanation'));
-</script>
-@endif
 
 @endsection

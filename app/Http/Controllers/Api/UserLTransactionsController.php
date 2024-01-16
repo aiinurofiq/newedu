@@ -35,6 +35,7 @@ class UserLTransactionsController extends Controller
             'lpayment_id' => ['required', 'exists:lpayments,id'],
             'coupon_id' => ['required', 'exists:coupons,id'],
             'totalamount' => ['required', 'numeric'],
+            'status' => ['required', 'numeric'],
         ]);
 
         $lTransaction = $user->lTransactions()->create($validated);

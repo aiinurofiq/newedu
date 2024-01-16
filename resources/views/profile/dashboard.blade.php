@@ -30,7 +30,7 @@
         </div>
     </div>
 </div>
-{{-- <div class="row mb-4">
+<div class="row mb-4">
     <div class="col-sm-6 col-lg-4 mb-3 mb-lg-0">
         <div class="d-flex justify-content-center align-items-center p-4 bg-orange bg-opacity-15 rounded-3"> <span class="display-6 lh-1 text-orange mb-0"><i class="fas fa-book"></i></span>
             <div class="ms-4">
@@ -58,5 +58,5 @@
             </div>
         </div>
     </div>
-</div> --}}
+</div>
 @endsection

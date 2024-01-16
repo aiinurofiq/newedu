@@ -12,9 +12,9 @@
                 <li class="nav-item"> <a class="nav-link" href="#">Permintaan Learning</a></li>
             </ul>
             <a class="list-group-item" href="{{ url('/my-knowledge') }}"><i class="bi bi-journal-text"></i>Knowledge Saya</a> 
-            <a class="list-group-item" href="student-dashboard.html"><i class="bi bi-journal-text"></i>Learning Saya</a>
-            <a class="list-group-item" href="student-quiz.html"><i class="bi bi-question-diamond fa-fw me-2"></i>Kuis</a>
-            <a class="list-group-item" href="instructor-edit-profile.html"><i class="bi bi-patch-check"></i>Sertifikat Saya</a>
+            <a class="list-group-item" href="{{ url('/my-learning') }}"><i class="bi bi-journal-text"></i>Learning Saya</a>
+            <a class="list-group-item" href="{{ url('/my-quiz') }}"><i class="bi bi-question-diamond fa-fw me-2"></i>Kuis</a>
+            {{-- <a class="list-group-item" href="instructor-edit-profile.html"><i class="bi bi-patch-check"></i>Sertifikat Saya</a> --}}
             <a class="list-group-item" href="{{ url('/my-profile') }}"><i class="bi bi-pencil-square fa-fw me-2"></i>Profile Saya</a>
             <a class="list-group-item text-danger bg-danger-soft-hover" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt fa-fw me-2"></i>Sign Out</a>
             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

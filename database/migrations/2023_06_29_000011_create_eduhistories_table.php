@@ -12,7 +12,6 @@ return new class extends Migration {
     {
         Schema::create('eduhistories', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('education_id');
             $table->string('major');
             $table->unsignedBigInteger('university_id');
             $table->unsignedBigInteger('city_id');

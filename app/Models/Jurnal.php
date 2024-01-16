@@ -11,7 +11,7 @@ class Jurnal extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['file', 'knowledge_id'];
+    protected $fillable = ['description','file', 'knowledge_id'];
 
     protected $searchableFields = ['*'];
 

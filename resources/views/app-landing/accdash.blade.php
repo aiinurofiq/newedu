@@ -10,7 +10,7 @@
                 <div class="card bg-transparent card-body pb-0 px-0 mt-2 mt-sm-0">
                     <div class="row d-sm-flex justify-sm-content-between mt-2 mt-md-0">
                         <div class="col-auto">
-                            <div class="avatar avatar-xxl position-relative mt-n3"> <img class="avatar-img rounded-circle border border-white border-3 shadow" src="{{ auth()->user()->profile_photo_path ? \Storage::url(auth()->user()->profile_photo_path) : '' }}" alt=""> <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">{{ auth()->user()->roles->pluck('name')->implode(', ') }}</span> </div>
+                            <div class="avatar avatar-xxl position-relative mt-n3"> <img class="avatar-img rounded-circle border border-white border-3 shadow" src="{{ auth()->user()->profile_photo_path ? asset(\Storage::url(auth()->user()->profile_photo_path)) : '' }}" alt=""> <span class="badge text-bg-success rounded-pill position-absolute top-50 start-100 translate-middle mt-4 mt-md-5 ms-n3 px-md-3">{{ auth()->user()->roles->pluck('name')->implode(', ') }}</span> </div>
                         </div>
                         <div class="col d-sm-flex justify-content-between align-items-center">
                             <div>

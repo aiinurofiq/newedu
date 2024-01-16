@@ -23,6 +23,10 @@ class Knowledge extends Model
         'user_id',
         'topic_id',
         'category_id',
+        'ispublic',
+        'wilayahsungai_id',
+        'divisi_id',
+        'year'
     ];
 
     protected $searchableFields = ['*'];
@@ -66,5 +70,14 @@ class Knowledge extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function divisi()
+    {
+        return $this->belongsTo(Subdivisi::class);
+    }
+    public function wilayahsungai()
+    {
+        return $this->belongsTo(Wilayahsungai::class);
     }
 }

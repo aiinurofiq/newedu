@@ -75,7 +75,7 @@
                 <div class="mb-4">
                     <h5>@lang('crud.users.inputs.profile_photo_path')</h5>
                     <x-partials.thumbnail
-                        src="{{ $user->profile_photo_path ? \Storage::url($user->profile_photo_path) : '' }}"
+                        src="{{ $user->profile_photo_path ? asset(\Storage::url($user->profile_photo_path)) : '' }}"
                         size="150"
                     />
                 </div>

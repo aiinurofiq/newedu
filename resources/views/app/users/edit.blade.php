@@ -71,14 +71,6 @@
             <livewire:user-speakers-detail :user="$user" />
         </div>
     </div>
-    @endcan @can('view-any', App\Models\Eduhistory::class)
-    <div class="card mt-4">
-        <div class="card-body">
-            <h4 class="card-title w-100 mb-2">Riwayat Pendidikan</h4>
-
-            <livewire:user-eduhistories-detail :user="$user" />
-        </div>
-    </div>
     @endcan @can('view-any', App\Models\Award::class)
     <div class="card mt-4">
         <div class="card-body">
@@ -101,6 +93,14 @@
             <h4 class="card-title w-100 mb-2">Riwayat Jabatan</h4>
 
             <livewire:user-positions-detail :user="$user" />
+        </div>
+    </div>
+    @endcan @can('view-any', App\Models\Eduhistory::class)
+    <div class="card mt-4">
+        <div class="card-body">
+            <h4 class="card-title w-100 mb-2">Eduhistories</h4>
+
+            <livewire:user-eduhistories-detail :user="$user" />
         </div>
     </div>
     @endcan

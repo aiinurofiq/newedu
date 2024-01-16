@@ -52,7 +52,7 @@
                         @if($editing && $report->file)
                         <div class="mt-2">
                             <a
-                                href="{{ \Storage::url($report->file) }}"
+                                href="{{ asset(\Storage::url($report->file)) }}"
                                 target="_blank"
                                 ><i class="icon ion-md-download"></i
                                 >&nbsp;Download</a
@@ -88,6 +88,18 @@
         <table class="table table-borderless table-hover">
             <thead>
                 <tr>
+                    <th>
+                        <input
+                            type="checkbox"
+                            wire:model="allSelected"
+                            wire:click="toggleFullSelection"
+                            title="{{ trans('crud.common.select_all') }}"
+                        />
+                    </th>
+                    <th class="text-left">
+                        @lang('crud.knowledge_reports.inputs.file')
+                    </th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody class="text-gray-600">
@@ -103,7 +115,7 @@
                     <td class="text-left">
                         @if($report->file)
                         <a
-                            href="{{ \Storage::url($report->file) }}"
+                            href="{{ asset(\Storage::url($report->file)) }}"
                             target="blank"
                             ><i class="icon ion-md-download"></i
                             >&nbsp;Download</a

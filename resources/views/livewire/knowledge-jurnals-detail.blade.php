@@ -52,7 +52,7 @@
                         @if($editing && $jurnal->file)
                         <div class="mt-2">
                             <a
-                                href="{{ \Storage::url($jurnal->file) }}"
+                                href="{{ asset(\Storage::url($jurnal->file)) }}"
                                 target="_blank"
                                 ><i class="icon ion-md-download"></i
                                 >&nbsp;Download</a
@@ -115,7 +115,7 @@
                     <td class="text-left">
                         @if($jurnal->file)
                         <a
-                            href="{{ \Storage::url($jurnal->file) }}"
+                            href="{{ asset(\Storage::url($jurnal->file)) }}"
                             target="blank"
                             ><i class="icon ion-md-download"></i
                             >&nbsp;Download</a

@@ -12,13 +12,6 @@ return new class extends Migration {
     {
         Schema::table('eduhistories', function (Blueprint $table) {
             $table
-                ->foreign('education_id')
-                ->references('id')
-                ->on('educations')
-                ->onUpdate('CASCADE')
-                ->onDelete('CASCADE');
-
-            $table
                 ->foreign('university_id')
                 ->references('id')
                 ->on('universities')
@@ -47,7 +40,6 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::table('eduhistories', function (Blueprint $table) {
-            $table->dropForeign(['education_id']);
             $table->dropForeign(['university_id']);
             $table->dropForeign(['city_id']);
             $table->dropForeign(['user_id']);

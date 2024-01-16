@@ -10,7 +10,7 @@
                 <div class="d-flex align-items-center">
                     <label class="position-relative me-4" for="uploadfile-1" title="Replace this pic"> 
                         <span class="avatar avatar-xl">
-                            <img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="{{ auth()->user()->profile_photo_path ? \Storage::url(auth()->user()->profile_photo_path) : '' }}" alt="">
+                            <img id="uploadfile-1-preview" class="avatar-img rounded-circle border border-white border-3 shadow" src="{{ auth()->user()->profile_photo_path ? asset(\Storage::url(auth()->user()->profile_photo_path)) : '' }}" alt="">
                         </span>
                     </label>
                 </div>

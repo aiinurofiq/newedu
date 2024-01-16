@@ -35,19 +35,6 @@
             <div class="modal-body">
                 <div>
                     <x-inputs.group class="col-sm-12">
-                        <x-inputs.select
-                            name="eduhistory.education_id"
-                            label="Education"
-                            wire:model="eduhistory.education_id"
-                        >
-                            <option value="null" disabled>Please select the Education</option>
-                            @foreach($educationsForSelect as $value => $label)
-                            <option value="{{ $value }}"  >{{ $label }}</option>
-                            @endforeach
-                        </x-inputs.select>
-                    </x-inputs.group>
-
-                    <x-inputs.group class="col-sm-12">
                         <x-inputs.text
                             name="eduhistory.major"
                             label="Major"
@@ -94,12 +81,30 @@
                     </x-inputs.group>
 
                     <x-inputs.group class="col-sm-12">
+                        <x-inputs.text
+                            name="eduhistory.academic_degree"
+                            label="Academic Degree"
+                            wire:model="eduhistory.academic_degree"
+                            maxlength="255"
+                            placeholder="Academic Degree"
+                        ></x-inputs.text>
+                    </x-inputs.group>
+
+                    <x-inputs.group class="col-sm-12">
                         <x-inputs.textarea
                             name="eduhistory.description"
                             label="Description"
                             wire:model="eduhistory.description"
                             maxlength="255"
                         ></x-inputs.textarea>
+                    </x-inputs.group>
+
+                    <x-inputs.group class="col-sm-12">
+                        <x-inputs.checkbox
+                            name="eduhistory.status"
+                            label="Status"
+                            wire:model="eduhistory.status"
+                        ></x-inputs.checkbox>
                     </x-inputs.group>
                 </div>
             </div>
@@ -137,9 +142,6 @@
                         />
                     </th>
                     <th class="text-left">
-                        @lang('crud.user_eduhistories.inputs.education_id')
-                    </th>
-                    <th class="text-left">
                         @lang('crud.user_eduhistories.inputs.major')
                     </th>
                     <th class="text-left">
@@ -152,7 +154,13 @@
                         @lang('crud.user_eduhistories.inputs.year')
                     </th>
                     <th class="text-left">
+                        @lang('crud.user_eduhistories.inputs.academic_degree')
+                    </th>
+                    <th class="text-left">
                         @lang('crud.user_eduhistories.inputs.description')
+                    </th>
+                    <th class="text-left">
+                        @lang('crud.user_eduhistories.inputs.status')
                     </th>
                     <th></th>
                 </tr>
@@ -167,9 +175,6 @@
                             wire:model="selected"
                         />
                     </td>
-                    <td class="text-left">
-                        {{ optional($eduhistory->education)->name ?? '-' }}
-                    </td>
                     <td class="text-left">{{ $eduhistory->major ?? '-' }}</td>
                     <td class="text-left">
                         {{ optional($eduhistory->university)->name ?? '-' }}
@@ -179,8 +184,12 @@
                     </td>
                     <td class="text-right">{{ $eduhistory->year ?? '-' }}</td>
                     <td class="text-left">
+                        {{ $eduhistory->academic_degree ?? '-' }}
+                    </td>
+                    <td class="text-left">
                         {{ $eduhistory->description ?? '-' }}
                     </td>
+                    <td class="text-left">{{ $eduhistory->status ?? '-' }}</td>
                     <td class="text-right" style="width: 134px;">
                         <div
                             role="group"
@@ -203,7 +212,7 @@
             </tbody>
             <tfoot>
                 <tr>
-                    <td colspan="7">{{ $eduhistories->render() }}</td>
+                    <td colspan="8">{{ $eduhistories->render() }}</td>
                 </tr>
             </tfoot>
         </table>

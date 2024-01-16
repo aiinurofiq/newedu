@@ -1148,30 +1148,30 @@ var e = {
     // END: Stepper
 
     // START: 22 Video player
-    videoPlyr: function () {
-        var vdp = e.select(".video-player");
-        if (e.isVariableDefined(vdp)) {
-            // youtube
-            const playerYoutube = new Plyr("#player-youtube", {});
-            window.player = playerYoutube;
+    // videoPlyr: function () {
+    //     var vdp = e.select(".video-player");
+    //     if (e.isVariableDefined(vdp)) {
+    //         // youtube
+    //         const playerYoutube = new Plyr("#player-youtube", {});
+    //         window.player = playerYoutube;
 
-            // Vimeo
-            const playerVimeo = new Plyr("#player-vimeo", {});
-            window.player = playerVimeo;
+    //         // Vimeo
+    //         const playerVimeo = new Plyr("#player-vimeo", {});
+    //         window.player = playerVimeo;
 
-            // HTML video
-            const playerHtmlvideo = new Plyr("video", {
-                captions: { active: true },
-            });
-            window.player = playerHtmlvideo;
+    //         // HTML video
+    //         const playerHtmlvideo = new Plyr("video", {
+    //             captions: { active: true },
+    //         });
+    //         window.player = playerHtmlvideo;
 
-            // HTML audio
-            const playerHtmlaudio = new Plyr("audio", {
-                captions: { active: true },
-            });
-            window.player = playerHtmlaudio;
-        }
-    },
+    //         // HTML audio
+    //         const playerHtmlaudio = new Plyr("audio", {
+    //             captions: { active: true },
+    //         });
+    //         window.player = playerHtmlaudio;
+    //     }
+    // },
     // END: Video player
 
     // START: 23 Pricing

@@ -12,7 +12,8 @@ return new class extends Migration {
     {
         Schema::create('answers', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->json('au');
+            $table->text('answer');
+            $table->boolean('istrue')->default(0);
             $table->unsignedBigInteger('question_id');
 
             $table->timestamps();

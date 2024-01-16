@@ -31,7 +31,7 @@
                 <div class="mb-4">
                     <h5>@lang('crud.knowledges.inputs.photo')</h5>
                     <x-partials.thumbnail
-                        src="{{ $knowledge->photo ? \Storage::url($knowledge->photo) : '' }}"
+                        src="{{ $knowledge->photo ? asset(\Storage::url($knowledge->photo)) : '' }}"
                         size="150"
                     />
                 </div>

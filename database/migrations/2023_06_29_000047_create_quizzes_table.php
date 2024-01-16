@@ -16,6 +16,7 @@ return new class extends Migration {
             $table->enum('category', ['0', '1', '2', '3']);
             $table->decimal('passinggrade');
             $table->text('description');
+            $table->decimal('sumvalue');
 
             $table->timestamps();
         });

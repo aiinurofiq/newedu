@@ -11,12 +11,16 @@ class Reqknowstat extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['reqknowledge_id', 'status', 'description'];
+    protected $fillable = ['reqknowledge_id', 'status', 'description','user_id','comment','start_date','end_date'];
 
     protected $searchableFields = ['*'];
 
     public function reqknowledge()
     {
-        return $this->belongsTo(Reqknowledge::class);
+        return $this->belongsTo(Knowledge::class);
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

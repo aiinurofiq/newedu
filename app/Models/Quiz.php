@@ -16,6 +16,7 @@ class Quiz extends Model
         'category',
         'passinggrade',
         'description',
+        'sumvalue',
     ];
 
     protected $searchableFields = ['*'];
@@ -28,5 +29,10 @@ class Quiz extends Model
     public function questions()
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function sendas()
+    {
+        return $this->hasMany(Senda::class);
     }
 }

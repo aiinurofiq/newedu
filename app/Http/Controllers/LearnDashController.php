@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Topic;
 use App\Models\Category;
 use App\Models\Knowledge;
+use App\Models\Learning;
 use App\Models\Reqknowledge;
 use Illuminate\Http\Request;
 
@@ -16,13 +17,13 @@ class LearnDashController extends Controller
      */
     public function index()
     {
-        $knows = Knowledge::all();
+        $learns = Learning::all();
         $topics = Topic::all();
         $categories = Category::all();
         $reqknows = Reqknowledge::all();
         $user = User::all();
-        
-        return view('profile.learndash', compact('knows','topics','categories', 'reqknows', 'user'));
+
+        return view('profile.learndash', compact('learns','topics','categories', 'reqknows', 'user'));
     }
 
     /**

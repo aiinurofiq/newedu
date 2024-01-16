@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-	<title>Edutirta Learning & Knowledge Management System Perum Jasa Tirta I</title>
+	<title>JTLearning Perum Jasa Tirta I</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<meta name="author" content="Webestica.com">
@@ -60,13 +60,18 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/font-awesome/css/all.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/choices/css/choices.min.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/stepper/css/bs-stepper.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/aos/aos.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ asset('assets/vendor/plyr/plyr.css')}}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}"></head>
 
 	{{-- Datatables --}}
 	<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css">
 
+	@livewireStyles
+
 <body>
+    
 	<header class="navbar-light navbar-sticky">
 		@include('layouts-landing.nav')
 	</header>
@@ -86,6 +91,7 @@
 <div class="back-top "><i class="bi bi-arrow-up-short position-absolute top-50 start-50 translate-middle "></i></div>
 
 
+@livewireScripts
 <!-- Include jQuery library -->
 <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
 
@@ -96,8 +102,12 @@
 <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/choices/js/choices.min.js') }}"></script>
 <script src="{{ asset('assets/vendor/purecounterjs/dist/purecounter_vanilla.js') }}"></script>
+<script src="{{ asset('assets/vendor/sticky-js/sticky.min.js') }}"></script>
+<script src="{{ asset('assets/vendor/stepper/js/bs-stepper.min.js') }} "></script>
 <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+<script src="{{ asset('assets/vendor/plyr/plyr.js')}}"></script>
 <script src="{{ asset('assets/js/functions.js') }}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 <!-- DataTables initialization script -->
 <script>
@@ -105,7 +115,8 @@
         $('#example').DataTable();
     });
 </script>
-
+@yield('script')
+@stack('script')
 
 </body>
 

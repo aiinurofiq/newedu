@@ -33,7 +33,7 @@
             required
         ></x-inputs.text>
     </x-inputs.group>
-    @if (auth()->user()->isSuperAdmin())
+
     <x-inputs.group class="col-sm-12">
         <x-inputs.checkbox
             name="status"
@@ -41,13 +41,10 @@
             :checked="old('status', ($editing ? $knowledge->status : 0))"
         ></x-inputs.checkbox>
     </x-inputs.group>
-    @else
-        
-    @endif
 
     <x-inputs.group class="col-sm-12">
         <div
-            x-data="imageViewer('{{ $editing && $knowledge->photo ? \Storage::url($knowledge->photo) : '' }}')"
+            x-data="imageViewer('{{ $editing && $knowledge->photo ? asset(\Storage::url($knowledge->photo)) : '' }}')"
         >
             <x-inputs.partials.label
                 name="photo"
@@ -85,7 +82,7 @@
             @enderror
         </div>
     </x-inputs.group>
-    @if (auth()->user()->isSuperAdmin())
+
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="user_id" label="User" required>
             @php $selected = old('user_id', ($editing ? $knowledge->user_id : '')) @endphp
@@ -95,19 +92,6 @@
             @endforeach
         </x-inputs.select>
     </x-inputs.group>
-    @else
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.text
-            name="user_id"
-            value="{{auth()->user()->id}}"
-            maxlength="255"
-            placeholder="Title"
-            required
-            hidden
-        ></x-inputs.text>
-    </x-inputs.group>
-
-    @endif
 
     <x-inputs.group class="col-sm-12">
         <x-inputs.select name="topic_id" label="Topic" required>

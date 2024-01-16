@@ -1,4 +1,3 @@
-
 @extends('app-landing.accdash')
 @section('content-profile')
 <div class="row mb-4">

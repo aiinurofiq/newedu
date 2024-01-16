@@ -85,7 +85,7 @@
                             <td>{{ $knowledge->status ?? '-' }}</td>
                             <td>
                                 <x-partials.thumbnail
-                                    src="{{ $knowledge->photo ? \Storage::url($knowledge->photo) : '' }}"
+                                    src="{{ $knowledge->photo ? asset(\Storage::url($knowledge->photo)) : '' }}"
                                 />
                             </td>
                             <td>

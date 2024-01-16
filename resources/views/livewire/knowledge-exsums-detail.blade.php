@@ -52,7 +52,7 @@
                         @if($editing && $exsum->file)
                         <div class="mt-2">
                             <a
-                                href="{{ \Storage::url($exsum->file) }}"
+                                href="{{ asset(\Storage::url($exsum->file)) }}"
                                 target="_blank"
                                 ><i class="icon ion-md-download"></i
                                 >&nbsp;Download</a
@@ -115,7 +115,7 @@
                     <td class="text-left">
                         @if($exsum->file)
                         <a
-                            href="{{ \Storage::url($exsum->file) }}"
+                            href="{{ asset(\Storage::url($exsum->file)) }}"
                             target="blank"
                             ><i class="icon ion-md-download"></i
                             >&nbsp;Download</a

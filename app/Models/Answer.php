@@ -11,16 +11,20 @@ class Answer extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['au', 'question_id'];
+    protected $fillable = ['answer', 'istrue', 'question_id'];
 
     protected $searchableFields = ['*'];
 
     protected $casts = [
-        'au' => 'array',
+        'istrue' => 'boolean',
     ];
 
     public function question()
     {
         return $this->belongsTo(Question::class);
+    }
+    public function detail_sendas()
+    {
+        return $this->hasMany(Detail_senda::class);
     }
 }

@@ -21,7 +21,7 @@ class KnowDashController extends Controller
         $categories = Category::all();
         $reqknows = Reqknowledge::all();
         $user = User::all();
-        
+
         return view('profile.knowdash', compact('knows','topics','categories', 'reqknows', 'user'));
     }
 

@@ -21,6 +21,7 @@ class User extends Authenticatable
     use HasApiTokens;
 
     protected $fillable = [
+        'id',
         'uuid',
         'nik',
         'kopeg',
@@ -150,6 +151,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Learning::class);
     }
+    public function sendas()
+    {
+        return $this->hasMany(Learning::class);
+    }
 
     public function lTransactions()
     {
@@ -169,5 +174,9 @@ class User extends Authenticatable
     public function isSuperAdmin(): bool
     {
         return $this->hasRole('super-admin');
+    }
+    public function isAdminUnit(): bool
+    {
+        return $this->hasRole('admin-unit');
     }
 }

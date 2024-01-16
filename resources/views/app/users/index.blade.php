@@ -117,7 +117,7 @@
                             <td>{{ optional($user->marital)->name ?? '-' }}</td>
                             <td>
                                 <x-partials.thumbnail
-                                    src="{{ $user->profile_photo_path ? \Storage::url($user->profile_photo_path) : '' }}"
+                                    src="{{ $user->profile_photo_path ? asset(\Storage::url($user->profile_photo_path)) : '' }}"
                                 />
                             </td>
                             <td class="text-center" style="width: 134px;">

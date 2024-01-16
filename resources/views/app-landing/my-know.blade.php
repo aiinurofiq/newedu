@@ -22,28 +22,29 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <x-form
-                method="POST"
-                action="{{ route('knowledges.store') }}"
-                has-files
-                class="mt-4"
-            >
-                @include('app.knowledges.form-inputs')
-
-                <div class="mt-4">
-                        <i class="icon ion-md-return-left text-primary"></i>
-                        @lang('crud.common.back')
-                    </a>
-
-                    <button type="submit" class="btn btn-primary float-right">
-                        <i class="icon ion-md-save"></i>
-                        @lang('crud.common.create')
-                    </button>
-                </div>
-            </x-form>
+            <div class="col-12">
+                <label class="form-label">Course title</label>
+                <input class="form-control" type="text" placeholder="Enter course title"> 
+            </div>
+            <div class="col-12">
+                <label class="form-label">Short description</label>
+                <textarea class="form-control" rows="2" placeholder="Enter keywords"></textarea>
+            </div>
+            <div class="col-md-12">
+                <label class="form-label">Course category</label>
+                <select class="form-select js-choice border-0 z-index-9 bg-transparent" aria-label=".form-select-sm" data-search-enabled="true">
+                    <option value="">Select category</option>
+                    <option>Engineer</option>
+                    <option>Medical</option>
+                    <option>Information technology</option>
+                    <option>Finance</option>
+                    <option>Marketing</option>
+                </select>
+            </div>
         </div>
         <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
         </div>
     </div>
     </div>
@@ -55,7 +56,7 @@
         <div class="col-sm-6 col-lg-4 col-xl-3">
             <div class="card shadow h-100">
             <img
-                src="{{$knowledge->photo ? \Storage::url($knowledge->photo) : '' }}"
+                src="{{$knowledge->photo ? asset(\Storage::url($knowledge->photo)) : '' }}"
                 class="card-img-top"
                 alt="course image"
             />

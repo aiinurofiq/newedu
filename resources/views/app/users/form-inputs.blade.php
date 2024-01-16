@@ -172,7 +172,7 @@
 
     <x-inputs.group class="col-sm-12">
         <div
-            x-data="imageViewer('{{ $editing && $user->profile_photo_path ? \Storage::url($user->profile_photo_path) : '' }}')"
+            x-data="imageViewer('{{ $editing && $user->profile_photo_path ? asset(\Storage::url($user->profile_photo_path)) : '' }}')"
         >
             <x-inputs.partials.label
                 name="profile_photo_path"

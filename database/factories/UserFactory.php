@@ -2,52 +2,36 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
-use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
+/**
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
+ */
 class UserFactory extends Factory
 {
     /**
-     * The name of the factory's corresponding model.
-     *
-     * @var string
-     */
-    protected $model = User::class;
-
-    /**
      * Define the model's default state.
      *
-     * @return array<string, mixed>
+     * @return array
      */
-    public function definition(): array
+    public function definition()
     {
         return [
-            'uuid' => $this->faker->unique->uuid(),
-            'nik' => $this->faker->text(255),
-            'kopeg' => $this->faker->unique->text(255),
             'name' => $this->faker->name(),
-            'birth' => $this->faker->date(),
-            'address' => $this->faker->address(),
-            'phone' => $this->faker->phoneNumber(),
-            'email' => $this->faker->unique->email(),
-            'npwp' => $this->faker->text(255),
+            'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
-            'password' => \Hash::make('password'),
+            'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
-            'city_id' => \App\Models\City::factory(),
-            'gender_id' => \App\Models\Gender::factory(),
-            'religion_id' => \App\Models\Religion::factory(),
-            'bloodtype_id' => \App\Models\Bloodtype::factory(),
-            'marital_id' => \App\Models\Marital::factory(),
-            'tribe_id' => \App\Models\Tribe::factory(),
         ];
     }
 
     /**
      * Indicate that the model's email address should be unverified.
+     *
+     * @return \Illuminate\Database\Eloquent\Factories\Factory
      */
-    public function unverified(): Factory
+    public function unverified()
     {
         return $this->state(function (array $attributes) {
             return [

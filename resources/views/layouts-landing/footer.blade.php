@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row align-items-center">
             <div class="col-md-4 text-center text-md-start mb-3 mb-md-0">
-                <a href="index.html"> <img class="h-20px" src="{{asset('assets/images/logo-light.png')}}" alt="logo"> </a>
+                <a href="index.html"> <img class="" width="50%" src="{{asset('assets/images/logo6.png')}}" alt="logo"> </a>
             </div>
             <div class="col-md-4 mb-3 mb-md-0">
                 <div class="text-center text-white"> Copyrights ©2023
