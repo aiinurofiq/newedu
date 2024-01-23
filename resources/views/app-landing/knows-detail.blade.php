@@ -581,24 +581,24 @@
                             case 'png':
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
-                                    "http://jtlearning.test/" + img);
+                                    "http://edutirta.test/" + img);
                                 break;
                             case 'jpeg':
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
-                                    "http://jtlearning.test/" + img);
+                                    "http://edutirta.test/" + img);
                                 break;
                             case 'jpg':
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
-                                    "http://jtlearning.test/" + img);
+                                    "http://edutirta.test/" + img);
                                 break;
                             case 'mp4':
                                 $('.mediaplayer').removeClass('d-none')
                                 // player.play();
                                 // $('#mediadetail').attr("src",
-                                //     "http://jtlearning.test/" + img);
-                                src = "http://jtlearning.test/" + img;
+                                //     "http://edutirta.test/" + img);
+                                src = "http://edutirta.test/" + img;
                                 type = "video/mp4";
                                 poster = "";
                                 // alert(player)
@@ -618,7 +618,7 @@
                                 break;
                             case 'pdf':
                                 $('#filepdf').removeClass('d-none')
-                                url = "http://jtlearning.test/" + img;
+                                url = "http://edutirta.test/" + img;
                                 pageNum = 1;
 
                                 pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
@@ -626,7 +626,10 @@
                                     document.getElementById('page_count').textContent = pdfDoc.numPages;
 
                                     // Initial/first page rendering
-                                    renderPage(pageNum);
+                                    var loadingTask = renderPage(pageNum);
+                                loadingTask.promise.then(function(pdf) {
+                                    alert('asd')
+                                });
                                 });
                                 break;
                             default:
@@ -634,11 +637,6 @@
                         }
                     }
                 });
-                // setTimeout(
-                //     function() {
-                //         $(".pertama").click();
-                //         $("#pertama").click();
-                //     }, 2000);
             });
         </script>
     @endpush
