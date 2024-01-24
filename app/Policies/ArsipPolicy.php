@@ -15,7 +15,7 @@ class ArsipPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasPermissionTo('list arsips');
+        return true;
     }
 
     /**

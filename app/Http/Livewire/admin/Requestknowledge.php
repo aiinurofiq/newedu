@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\admin;
 
 use App\Models\Knowledge;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Reqknowstat;
 use Livewire\Component;
 use Livewire\WithFileUploads;
@@ -13,7 +14,7 @@ class Requestknowledge extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    public $topicall, $categoryall, $divisiall, $wsall, $title, $abstract, $topic, $category, $ws, $divisi, $imageknowledge, $writer, $editknowledge, $deleteknowledge, $historyknowledge, $approve, $confirmapprove,$comment,$hari,$cancelapprove;
+    public $topicall, $categoryall, $divisiall, $wsall, $title, $abstract, $topic, $category, $ws, $divisi, $imageknowledge, $writer, $editknowledge, $deleteknowledge, $historyknowledge, $approve, $confirmapprove, $comment, $hari, $cancelapprove;
     public $perPage = 5;
     public $action = 'R';
     protected $paginationTheme = 'bootstrap';
@@ -26,15 +27,27 @@ class Requestknowledge extends Component
         'publish' => 'publish',
         'cancel' => 'cancel',
     ];
+    public function mount()
+    {
+        $this->action = Auth::user()->hasAnyRole('super-admin') ? 'R' : 'H';
+    }
     public function render()
     {
         $this->historyknowledge = Reqknowstat::where('status', 0)->get();
-        return view('livewire.admin.requestknowledge', ['data' => $this->dataknowledge()])->layout('layouts.admin.app');
+        return view('livewire.admin.requestknowledge', ['data' => Auth::user()->hasAnyRole('super-admin') ? $this->dataknowledge() : $this->dataknowledgeuser()])->layout('layouts.admin.app');
     }
     public function dataknowledge()
     {
         $cari = $this->search;
         return Reqknowstat::where('status', '!=', 0)->when($cari, function ($query) use ($cari) {
+            return $query->where('name', 'like', '%' . $cari . '%');
+        })->paginate($this->perPage);
+    }
+    public function dataknowledgeuser()
+    {
+        $cari = $this->search;
+        $id = Auth::user()->id;
+        return Reqknowstat::where('user_id', $id)->when($cari, function ($query) use ($cari) {
             return $query->where('name', 'like', '%' . $cari . '%');
         })->paginate($this->perPage);
     }
@@ -49,7 +62,7 @@ class Requestknowledge extends Component
     public function publish($confirm = false)
     {
         if (!$confirm) {
-            $this->confirmapprove ? $this->validate(['hari' => 'required']) : null; 
+            $this->confirmapprove ? $this->validate(['hari' => 'required']) : null;
             $this->emit('konfirm', ['title' => 'Apakah anda yakin?', 'text' => 'Request akan Diupdate!', 'icon' => 'warning', 'confirmalert' => 'Update Request!', 'type' => 'publish']);
         } else {
             try {
@@ -57,7 +70,7 @@ class Requestknowledge extends Component
                     'status' => $this->confirmapprove ? '1' : '2',
                     'comment' => $this->comment,
                     'start_date' => $this->confirmapprove ? date('Y-m-d H:i:s') : null,
-                    'end_date' => $this->confirmapprove ? date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s'). ' + '.$this->hari.' days')) : null
+                    'end_date' => $this->confirmapprove ? date('Y-m-d H:i:s', strtotime(date('Y-m-d H:i:s') . ' + ' . $this->hari . ' days')) : null
                 ];
                 Reqknowstat::where('id', $this->approve)->update($data);
                 $this->emit('notif', ['title' => 'Request berhasil diupdate!!', 'text' => 'Proses berhasil.', 'icon' => 'success']);
@@ -71,10 +84,11 @@ class Requestknowledge extends Component
                 $this->action = 'R';
             }
         }
-    }public function cancel($id, $confirm = false)
+    }
+    public function cancel($id, $confirm = false)
     {
         if (!$confirm) {
-            $this->cancelapprove = $id; 
+            $this->cancelapprove = $id;
             $this->emit('konfirm', ['title' => 'Apakah anda yakin?', 'text' => 'Request akan dicancel!', 'icon' => 'warning', 'confirmalert' => 'Update Request!', 'type' => 'cancel']);
         } else {
             try {

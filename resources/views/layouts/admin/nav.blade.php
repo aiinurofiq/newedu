@@ -21,7 +21,7 @@
             <li class="nav-item navbar-dropdown dropdown-user dropdown">
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                        <img src="{{asset('icon.png')}}" alt class="w-px-40 h-auto rounded-circle">
+                        <img src="{{ asset('icon.png') }}" alt class="w-px-40 h-auto rounded-circle">
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -30,15 +30,14 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="{{asset('icon.png')}}" alt
-                                            class="w-px-40 h-auto rounded-circle">
+                                        <img src="{{ asset('icon.png') }}" alt class="w-px-40 h-auto rounded-circle">
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
                                     <span class="fw-semibold d-block">
-                                        {{Auth::user()->name}}
+                                        {{ Auth::user()->name }}
                                     </span>
-                                    <small class="text-muted">{{Auth::user()->getRoleNames()->first()}}</small>
+                                    <small class="text-muted">{{ Auth::user()->getRoleNames()->first() }}</small>
                                 </div>
                             </div>
                         </a>
@@ -47,17 +46,21 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <div class="dropdown-divider"></div>
+                        {{-- <button type="submit">Logout</button> --}}
+                        <a class="dropdown-item" href="{{ route('profileuser') }}">
+                            <i class='ti ti-user me-2'></i>
+                            <span class="align-middle">Profile</span>
+                        </a>
                     </li>
                     <li>
                         <form action="{{ route('logout') }}" method="POST">
                             {{ csrf_field() }}
-                    {{-- <button type="submit">Logout</button> --}}
-                        <button class="dropdown-item" href="{{ route('logout') }}">
-                            <i class='ti ti-login me-2'></i>
-                            <span class="align-middle">Logout</span>
-                        </button>
-                    </form>
+                            {{-- <button type="submit">Logout</button> --}}
+                            <button class="dropdown-item" href="{{ route('logout') }}">
+                                <i class='ti ti-login me-2'></i>
+                                <span class="align-middle">Logout</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </li>

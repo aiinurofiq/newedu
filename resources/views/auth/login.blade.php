@@ -115,7 +115,7 @@
                                                 {{ old('remember') ? 'checked' : '' }}>Remember me</label>
                                         </div>
                                         @if (Route::has('password.request'))
-                                            <div class="text-primary-hover">
+                                            <div class="text-primary-hover d-none">
                                                 <a href="{{ route('password.request') }}" class="text-secondary">
                                                     <u>Forgot password?</u> </a>
                                             </div>

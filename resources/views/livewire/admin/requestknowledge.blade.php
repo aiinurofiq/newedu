@@ -1,11 +1,12 @@
 <div class="container-xxl flex-grow-1 container-p-y">
     <div class="d-flex justify-content-between mb-4">
         <h4 class="fw-bold mb-2"><span class="text-muted fw-light">Home /</span> Approve Request</h4>
+        
         <button wire:click="$set('action', 'H')"
-            class="create-new btn btn-primary {{ $action == 'R' ? '' : 'd-none' }}"><i
-                class="ti ti-eye me-sm-1"></i><span class="fw-bold">History</span></button>
+            class="create-new btn btn-primary {{ $action == 'R' ? '' : 'd-none' }}"><i class="ti ti-eye me-sm-1"></i><span
+                class="fw-bold">History</span></button>
         <button wire:click="$set('action', 'R')" onclick="event.preventDefault()"
-            class="btn btn-warning {{ $action == 'U' || $action == 'H' ? '' : 'd-none' }}"><i
+            class="btn btn-warning {{ $action == 'U' || $action == 'H' ? '' : 'd-none' }} {{ auth()->user()->hasAnyRole('super-admin')? '': 'd-none' }}"><i
                 class="fa-solid fa-circle-left me-sm-1"></i><span class="fw-bold">Kembali</span></button>
 
     </div>
@@ -156,7 +157,7 @@
                         <th class="text-center">Active</th>
                         <th class="text-center">Comment</th>
                         <th class="text-center">Status</th>
-                        <th class="text-center">Actions</th>
+                        <th class="text-center {{ auth()->user()->hasAnyRole('super-admin')? '': 'd-none' }}">Actions</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -173,7 +174,11 @@
                                     <span class="badge bg-warning">End Date :
                                         {{ date('Y-m-d', strtotime($item->end_date)) }}</span>
                                 @else
-                                    <div class="badge bg-label-danger mb-1">Rejected</div>
+                                    @if ($item->status == 2)
+                                        <div class="badge bg-label-danger mb-1">Rejected</div>
+                                    @else
+                                        <div class="badge bg-label-warning mb-1">Waiting</div>
+                                    @endif
                                 @endif
                             </td>
                             <td class="text-center">{{ $item->comment }}</td>
@@ -181,10 +186,14 @@
                                 @if ($item->status == 1)
                                     <div class="badge bg-success mb-1">Approved</div>
                                 @else
-                                    <div class="badge bg-label-danger mb-1">Rejected</div>
+                                    @if ($item->status == 2)
+                                        <div class="badge bg-label-danger mb-1">Rejected</div>
+                                    @else
+                                        <div class="badge bg-label-warning mb-1">Waiting</div>
+                                    @endif
                                 @endif
                             </td>
-                            <td class="text-center" width='1%'>
+                            <td class="text-center {{ auth()->user()->hasAnyRole('super-admin')? '': 'd-none' }}" width='1%'>
                                 <div class="btn-group">
                                     <button type="button"
                                         class="btn btn-primary btn-icon rounded-pill dropdown-toggle hide-arrow"

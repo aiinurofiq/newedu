@@ -56,7 +56,7 @@ use App\Http\Livewire\admin\TopicLivewire;
 use App\Http\Livewire\LearnAll;
 use App\Http\Livewire\Quiz;
 use App\Http\Livewire\admin\Authlogin;
-
+use App\Http\Livewire\admin\Profileuser;
 
 /*
 |--------------------------------------------------------------------------
@@ -154,4 +154,5 @@ Route::prefix('/')
         Route::get('/admin/category', CategoryLivewire::class)->name('category');
         Route::get('/admin/ws', WsLivewire::class)->name('ws');
         Route::get('/admin/divisi', DivisiLivewire::class)->name('divisi');
+        Route::get('/admin/profileuser', Profileuser::class)->name('profileuser');
     });

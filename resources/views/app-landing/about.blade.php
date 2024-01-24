@@ -43,8 +43,7 @@
 			  </svg>
 			</figure>
 			<h1 class="position-relative fs-2">
-			  Eduport education theme, built specifically for the education
-			  centers which is dedicated to teaching and involve learners.
+				Jtlearning is platform online knowledge and learning from Perum Jasa Tirta I. Taught by experts to help you acquire new skills.
 			</h1>
 		  </div>
 		</div>
@@ -54,14 +53,14 @@
 			  <div class="col-10 col-lg-6">
 				<img
 				  class="rounded-4"
-				  src="assets/images/about/05.jpg"
+				  src="{{asset('3.jpg')}}"
 				  alt=""
 				/>
 			  </div>
 			  <div class="col-12">
 				<img
 				  class="rounded-4"
-				  src="assets/images/about/03.jpg"
+				  src="{{asset('1.jpg')}}"
 				  alt=""
 				/>
 			  </div>
@@ -76,12 +75,13 @@
 				/>
 			  </svg>
 			</figure>
-			<img class="rounded-4" src="assets/images/about/09.jpg" alt="" />
+			<img class="rounded-4" 
+			src="{{asset('6.jpg')}}" alt="" />
 		  </div>
 		  <div class="col-md-4">
 			<div class="row g-4">
 			  <div class="col-sm-6 col-md-12">
-				<div class="bg-grad rounded-4 p-5 text-start">
+				<div class="bg-grad-blue rounded-4 p-5 text-start">
 				  <span class="text-white">Our goal:</span>
 				  <h3 class="text-white">
 					“Be open to new ideas and approaches. Develop your
@@ -92,7 +92,7 @@
 			  <div class="col-sm-6 col-md-12 col-lg-6">
 				<img
 				  class="rounded-4"
-				  src="assets/images/about/10.jpg"
+				  src="{{asset('5.jpg')}}"
 				  alt=""
 				/>
 			  </div>
@@ -105,12 +105,9 @@
 	  <div class="container">
 		<div class="row mb-4">
 		  <div class="col-lg-8">
-			<h2>About Eduport Portal</h2>
+			<h2>About JtLearning</h2>
 			<p class="mb-0">
-			  How promotion excellent curiosity yet attempted happiness Gay
-			  prosperous impression had conviction For every delay death ask
-			  to style Me mean able my by in they Extremity now strangers
-			  contained.
+				In essence, learning is a dynamic and enriching process that not only enhances individual capabilities but also contributes to societal progress and well-being. The benefits of learning extend far beyond the acquisition of specific knowledge, impacting various facets of life in a positive and transformative manner.
 			</p>
 		  </div>
 		</div>
@@ -367,205 +364,38 @@
 				/>
 			  </svg>
 			</figure>
-			<img src="assets/images/about/06.jpg" class="rounded" alt="" />
+			<img src="{{asset('4.jpg')}}" class="rounded" alt="" />
 		  </div>
 		  <div class="col-lg-7 mt-4 mt-lg-0">
 			<h4 class="mb-3">
-			  35,000+ happy students joined with us to achieve their goals
+			  Knowledge and Learning for All Employees in Perum Jasa Tirta I
 			</h4>
 			<p>
-			  How promotion excellent curiosity yet attempted happiness Gay
-			  prosperous impression had conviction For every delay death ask
-			  to style Me mean able my by in they Extremity now strangers
-			  contained breakfast him discourse additions Sincerity collected
-			  contented led now perpetual extremely forfeited
+				Knowledge is the catalyst for innovation and creativity. It sparks new ideas, fosters problem-solving skills, and encourages thinking outside the box to address challenges and drive progress. Knowledge fosters global understanding by exposing individuals to diverse cultures, perspectives, and ideas. This cultural awareness promotes tolerance, empathy, and a more interconnected world.
 			</p>
 			<p>
-			  Happiness prosperous impression had conviction For every delay
-			  in they Extremity now strangers contained breakfast him
-			  discourse additions Sincerity collected contented led now
-			  perpetual extremely forfeited
+				Learning encourages critical thinking, allowing individuals to analyze information, evaluate situations, and make sound judgments. It promotes a discerning approach to information and decision-making. Learning fosters adaptability by instilling a growth mindset. Embracing new information and skills helps individuals navigate evolving situations and respond positively to change.
 			</p>
 			<ul class="list-group list-group-borderless mt-4">
 			  <li class="list-group-item d-flex">
-				<i class="bi bi-patch-check-fill text-success me-2"></i>Setup
-				and installation takes less time
+				<i class="bi bi-patch-check-fill text-success me-2"></i>Learn with experts
 			  </li>
 			  <li class="list-group-item d-flex">
 				<i class="bi bi-patch-check-fill text-success me-2"></i
-				>Professional and easy to use software
+				>Professional and easy to use
 			  </li>
 			  <li class="list-group-item d-flex">
 				<i class="bi bi-patch-check-fill text-success me-2"></i
 				>Perfect for any device with pixel-perfect design
 			  </li>
 			  <li class="list-group-item d-flex">
-				<i class="bi bi-patch-check-fill text-success me-2"></i>Setup
-				and installation too fast
+				<i class="bi bi-patch-check-fill text-success me-2"></i>Get certificate
 			  </li>
 			</ul>
-			<div class="row mt-3 g-4">
-			  <div class="col-md-6">
-				<div class="overflow-hidden">
-				  <h6>Enterprise customer</h6>
-				  <div class="progress progress-sm bg-primary bg-opacity-10">
-					<div
-					  class="progress-bar bg-primary aos"
-					  role="progressbar"
-					  data-aos="slide-right"
-					  data-aos-delay="200"
-					  data-aos-duration="1000"
-					  data-aos-easing="ease-in-out"
-					  style="width: 85%"
-					  aria-valuenow="85"
-					  aria-valuemin="0"
-					  aria-valuemax="100"
-					>
-					  <span
-						class="progress-percent-simple ms-auto h6 fw-light"
-						>85%</span
-					  >
-					</div>
-				  </div>
-				</div>
-			  </div>
-			  <div class="col-md-6">
-				<div class="overflow-hidden">
-				  <h6>Accurate Course</h6>
-				  <div class="progress progress-sm bg-primary bg-opacity-10">
-					<div
-					  class="progress-bar bg-primary aos"
-					  role="progressbar"
-					  data-aos="slide-right"
-					  data-aos-delay="200"
-					  data-aos-duration="1000"
-					  data-aos-easing="ease-in-out"
-					  style="width: 90%"
-					  aria-valuenow="90"
-					  aria-valuemin="0"
-					  aria-valuemax="100"
-					>
-					  <span
-						class="progress-percent-simple ms-auto h6 fw-light"
-						>90%</span
-					  >
-					</div>
-				  </div>
-				</div>
-			  </div>
-			  <div class="col-md-6">
-				<div class="overflow-hidden">
-				  <h6>Languages</h6>
-				  <div class="progress progress-sm bg-primary bg-opacity-10">
-					<div
-					  class="progress-bar bg-primary aos"
-					  role="progressbar"
-					  data-aos="slide-right"
-					  data-aos-delay="200"
-					  data-aos-duration="1000"
-					  data-aos-easing="ease-in-out"
-					  style="width: 75%"
-					  aria-valuenow="75"
-					  aria-valuemin="0"
-					  aria-valuemax="100"
-					>
-					  <span
-						class="progress-percent-simple ms-auto h6 fw-light"
-						>75%</span
-					  >
-					</div>
-				  </div>
-				</div>
-			  </div>
-			  <div class="col-md-6">
-				<div class="overflow-hidden">
-				  <h6>Instructors</h6>
-				  <div class="progress progress-sm bg-primary bg-opacity-10">
-					<div
-					  class="progress-bar bg-primary aos"
-					  role="progressbar"
-					  data-aos="slide-right"
-					  data-aos-delay="200"
-					  data-aos-duration="1000"
-					  data-aos-easing="ease-in-out"
-					  style="width: 95%"
-					  aria-valuenow="95"
-					  aria-valuemin="0"
-					  aria-valuemax="100"
-					>
-					  <span
-						class="progress-percent-simple ms-auto h6 fw-light"
-						>95%</span
-					  >
-					</div>
-				  </div>
-				</div>
-			  </div>
-			</div>
 		  </div>
 		</div>
 	  </div>
 	</section>
-	<section class="bg-light">
-	  <div class="container">
-		<div class="row d-flex justify-content-center">
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/microsoft.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/linkedin.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/netflix.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/coca-cola.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/envato.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/android.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/coca-cola.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/shippable.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/algolia.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/importio.svg" alt="" />
-			</div>
-		  </div>
-		  <div class="col-6 col-sm-4 col-lg-2">
-			<div class="p-4 grayscale text-center">
-			  <img src="assets/images/client/yamaha.svg" alt="" />
-			</div>
-		  </div>
-		</div>
-	  </div>
-	</section>
+	
 @endsection
 

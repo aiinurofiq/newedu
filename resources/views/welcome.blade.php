@@ -1,6 +1,6 @@
 @extends('layouts-landing.app')
 @section('content-landing')
-    <section class="position-relative overflow-hidden pt-5 pt-lg-3">
+    <section class="position-relative overflow-hidden pt-1 pt-lg-1">
         <figure class="position-absolute top-50 start-0 translate-middle-y ms-n7 d-none d-xxl-block">
             <svg class="rotate-74 fill-danger opacity-1">
                 <circle cx="180.4" cy="15.5" r="7.7" />
@@ -180,8 +180,8 @@
                         </li>
                     </ul>
                     <div class="d-sm-flex align-items-center justify-content-center justify-content-lg-start">
-                        <a href="#" class="btn btn-lg btn-danger-soft me-2 mb-4 mb-sm-0">Get Started</a>
-                        <div class="d-flex align-items-center justify-content-center py-2 ms-0 ms-sm-4">
+                        <a href="#" class=" d-none btn btn-lg btn-danger-soft me-2 mb-4 mb-sm-0">Get Started</a>
+                        <div class=" d-none d-flex align-items-center justify-content-center py-2 ms-0 ms-sm-4">
                             <a data-glightbox data-gallery="office-tour" href="#"
                                 class="btn btn-round btn-primary-shadow mb-0 overflow-visible me-7">
                                 <i class="fas fa-play"></i>
@@ -274,7 +274,7 @@
                         <p class="text-white">JOIN NOW!</p>
                     </div>
                     <div class="position-relative">
-                        <img width='90%' src="hero.png" alt="" />
+                        <img width='90%' src="fix5.png" alt="" />
                     </div>
                 </div>
             </div>
@@ -361,7 +361,7 @@
 
                 <div class="row g-4">
                     @forelse ($knows as $know)
-                        @if ($know->status == 1)
+                        @if ($know->status == 1 && $know->ispublic == 1)
                             <div class="col-sm-6 col-lg-4 col-xl-3">
                                 <div class="card shadow h-100">
                                     <img src="{{ $know->photo ? asset(\Storage::url($know->photo)) : '' }}"
@@ -399,7 +399,7 @@
     {{-- End Knowledge --}}
     {{-- Start Learning --}}
     <section>
-        <div class="container">
+        <div class="container d-none">
             <div class="row mb-4">
                 <div class="col-lg-8 mx-auto text-center">
                     <h2 class="fs-1">Learning Update</h2>
@@ -478,10 +478,10 @@
                                         <h3 class="text-white">Knowledge and Learning Management System Perum Jasa Tirta I
                                         </h3>
                                         <p class="text-white mb-3 mb-lg-0">
-                                            Knowledge and Learning for All Employees in Perum Jada Tirta I
+                                            Knowledge and Learning for All Employees in Perum Jasa Tirta I
                                         </p>
                                     </div>
-                                    <div class="col-lg-5 text-lg-end">
+                                    <div class="col-lg-5 text-lg-end d-none">
                                         <a href="#" class="btn btn-outline-warning mb-0">Start Now!</a>
                                     </div>
                                 </div>

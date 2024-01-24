@@ -19,12 +19,12 @@
                             <a class="nav-link" href="{{ url('/') }}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/#') }}">About</a>
+                            <a class="nav-link" href="{{ url('/about') }}">About</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/all-knowledge') }}">Knowledge</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-none">
                             <a class="nav-link" href="{{ url('/#') }}">Learning</a>
                         </li>
                         @if (Route::has('login'))
@@ -35,7 +35,7 @@
                                         <a href="{{ url('/admin/knowledge') }}"
                                             class="btn btn-primary mb-0 ml-3">Dashboard</a>
                                     @else
-                                        <a href="{{ url('/account-dashboard') }}"
+                                        <a href="{{ url('/admin/profileuser') }}"
                                             class="btn btn-primary mb-0 ml-3">Dashboard</a>
                                     @endif
                                 </li>
@@ -58,14 +58,14 @@
                 <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button"
                     data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
                     <img class="avatar-img rounded-circle"
-                        src="{{ auth()->user()->profile_photo_path ? asset(\Storage::url(auth()->user()->profile_photo_path)) : '' }}"
+                        src="{{ asset('person.jpg') }}"
                         alt="avatar"> </a>
                 <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3"
                     aria-labelledby="profileDropdown">
                     <li class="px-3 mb-3">
                         <div class="d-flex align-items-center">
                             <div class="avatar me-3"> <img class="avatar-img rounded-circle shadow"
-                                    src="{{ auth()->user()->profile_photo_path ? asset(\Storage::url(auth()->user()->profile_photo_path)) : '' }}"
+                                    src="{{ asset('person.jpg') }}"
                                     alt="avatar"> </div>
                             <div> <a class="h6" href="{{ url('/account-dashboard') }}">{{ auth()->user()->name }}</a>
                                 <p class="small m-0">{{ auth()->user()->email }}</p>
@@ -75,9 +75,9 @@
                     <li>
                         <hr class="dropdown-divider">
                     </li>
-                    <li><a class="dropdown-item" href="{{ url('/account-dashboard') }}"><i
+                    <li><a class="dropdown-item" href="{{ url('/admin/profileuser') }}"><i
                                 class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-                    <li><a class="dropdown-item" href="{{ url('/help') }}"><i
+                    <li><a class="dropdown-item" target="_blank" href="https://drive.google.com/file/d/1mqR1Wmv83tZC-2OERsVxe2ThT0yFq7ht/view?usp=sharing"><i
                                 class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
                     <li>
                         <a class="dropdown-item bg-danger-soft-hover" href="{{ route('logout') }}"
