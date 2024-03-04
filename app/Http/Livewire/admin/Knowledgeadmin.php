@@ -330,7 +330,9 @@ class Knowledgeadmin extends Component
         $this->action = 'A';
         $this->editmoduleid = null;
         $this->description = '';
+        $this->filemodule = '';
         $this->deletemoduleid = null;
+        $this->resetValidation();
         $this->emit('reset');
     }
     public function clear()

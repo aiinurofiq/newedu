@@ -49,6 +49,12 @@
                                 </div>
                                 <div class="tab-content pt-4 px-3 d-none" id="course-pills-tabContent">
                                     <h5 class="mb-3" id='titlemodules'>Abstract Knowledge</h5>
+                                    <div class="d-flex justify-content-center align-items-center bg-secondary"
+                                        style="height: 350px;" id='loadingpdf'>
+                                        <div class="spinner-border text-light" role="status">
+                                            <span class="visually-hidden">Loading...</span>
+                                        </div>
+                                    </div>
                                     <div id="gambar" class="d-none">
                                         <img id='changeimage'
                                             src="{{ $knows->photo ? asset(\Storage::url($knows->photo)) : '' }}"
@@ -546,6 +552,7 @@
                 $(".changeimg").on("click", function() {
                     player.stop();
                     player2.stop();
+                    $('#loadingpdf').removeClass('d-none')
                     $('#course-pills-tabContent').removeClass('d-none')
                     $('.btn-round').removeClass('btn-success')
                     $('.btn-round').addClass('btn-danger-soft')
@@ -579,21 +586,25 @@
                         fileExtension = dataId.replace(/^.*\./, '');
                         switch (fileExtension) {
                             case 'png':
+                                $('#loadingpdf').addClass('d-none')
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
                                     "http://edutirta.test/" + img);
                                 break;
                             case 'jpeg':
+                                $('#loadingpdf').addClass('d-none')
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
                                     "http://edutirta.test/" + img);
                                 break;
                             case 'jpg':
+                                $('#loadingpdf').addClass('d-none')
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
                                     "http://edutirta.test/" + img);
                                 break;
                             case 'mp4':
+                                $('#loadingpdf').addClass('d-none')
                                 $('.mediaplayer').removeClass('d-none')
                                 // player.play();
                                 // $('#mediadetail').attr("src",
@@ -617,19 +628,20 @@
                                 // player.play();
                                 break;
                             case 'pdf':
-                                $('#filepdf').removeClass('d-none')
                                 url = "http://edutirta.test/" + img;
                                 pageNum = 1;
 
                                 pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+                                    $('#loadingpdf').addClass('d-none')
+                                    $('#filepdf').removeClass('d-none')
                                     pdfDoc = pdfDoc_;
                                     document.getElementById('page_count').textContent = pdfDoc.numPages;
 
                                     // Initial/first page rendering
                                     var loadingTask = renderPage(pageNum);
-                                loadingTask.promise.then(function(pdf) {
-                                    alert('asd')
-                                });
+                                    loadingTask.promise.then(function(pdf) {
+                                        alert('asd')
+                                    });
                                 });
                                 break;
                             default:

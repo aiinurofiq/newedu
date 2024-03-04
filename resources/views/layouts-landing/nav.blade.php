@@ -24,14 +24,19 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/all-knowledge') }}">Knowledge</a>
                         </li>
+                        @if (session('referrer'))
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ session('link') }}">Kembali ke
+                                    {{ strtoupper(session('referrer')) }}</a>
+                            </li>
+                        @endif
                         <li class="nav-item d-none">
                             <a class="nav-link" href="{{ url('/#') }}">Learning</a>
                         </li>
                         @if (Route::has('login'))
                             @auth
                                 <li class="nav-item">
-                                    @if (auth()->user()->isSuperAdmin() ||
-                                            auth()->user()->isAdminUnit())
+                                    @if (auth()->user()->isSuperAdmin() || auth()->user()->isAdminUnit())
                                         <a href="{{ url('/admin/knowledge') }}"
                                             class="btn btn-primary mb-0 ml-3">Dashboard</a>
                                     @else
@@ -57,16 +62,13 @@
             <div class="dropdown ms-1 ms-lg-0">
                 <a class="avatar avatar-sm p-0" href="#" id="profileDropdown" role="button"
                     data-bs-auto-close="outside" data-bs-display="static" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img class="avatar-img rounded-circle"
-                        src="{{ asset('person.jpg') }}"
-                        alt="avatar"> </a>
+                    <img class="avatar-img rounded-circle" src="{{ asset('person.jpg') }}" alt="avatar"> </a>
                 <ul class="dropdown-menu dropdown-animation dropdown-menu-end shadow pt-3"
                     aria-labelledby="profileDropdown">
                     <li class="px-3 mb-3">
                         <div class="d-flex align-items-center">
                             <div class="avatar me-3"> <img class="avatar-img rounded-circle shadow"
-                                    src="{{ asset('person.jpg') }}"
-                                    alt="avatar"> </div>
+                                    src="{{ asset('person.jpg') }}" alt="avatar"> </div>
                             <div> <a class="h6" href="{{ url('/account-dashboard') }}">{{ auth()->user()->name }}</a>
                                 <p class="small m-0">{{ auth()->user()->email }}</p>
                             </div>
@@ -77,7 +79,8 @@
                     </li>
                     <li><a class="dropdown-item" href="{{ url('/admin/profileuser') }}"><i
                                 class="bi bi-gear fa-fw me-2"></i>Account Settings</a></li>
-                    <li><a class="dropdown-item" target="_blank" href="https://drive.google.com/file/d/1mqR1Wmv83tZC-2OERsVxe2ThT0yFq7ht/view?usp=sharing"><i
+                    <li><a class="dropdown-item" target="_blank"
+                            href="https://drive.google.com/file/d/1mqR1Wmv83tZC-2OERsVxe2ThT0yFq7ht/view?usp=sharing"><i
                                 class="bi bi-info-circle fa-fw me-2"></i>Help</a></li>
                     <li>
                         <a class="dropdown-item bg-danger-soft-hover" href="{{ route('logout') }}"
@@ -101,8 +104,8 @@
                                     <use href="#"></use>
                                 </svg> Light </button>
                             <button type="button" class="btn btn-sm mb-0" data-bs-theme-value="dark">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
-                                    class="bi bi-moon-stars fa-fw mode-switch" viewBox="0 0 16 16">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                    fill="currentColor" class="bi bi-moon-stars fa-fw mode-switch" viewBox="0 0 16 16">
                                     <path
                                         d="M6 .278a.768.768 0 0 1 .08.858 7.208 7.208 0 0 0-.878 3.46c0 4.021 3.278 7.277 7.318 7.277.527 0 1.04-.055 1.533-.16a.787.787 0 0 1 .81.316.733.733 0 0 1-.031.893A8.349 8.349 0 0 1 8.344 16C3.734 16 0 12.286 0 7.71 0 4.266 2.114 1.312 5.124.06A.752.752 0 0 1 6 .278zM4.858 1.311A7.269 7.269 0 0 0 1.025 7.71c0 4.02 3.279 7.276 7.319 7.276a7.316 7.316 0 0 0 5.205-2.162c-.337.042-.68.063-1.029.063-4.61 0-8.343-3.714-8.343-8.29 0-1.167.242-2.278.681-3.286z" />
                                     <path

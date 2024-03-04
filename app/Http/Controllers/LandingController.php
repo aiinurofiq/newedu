@@ -26,7 +26,7 @@ class LandingController extends Controller
 {
     public function index(Request $request): View
     {
-        $knows = Knowledge::limit(4)->get();
+        $knows = Knowledge::where('status',1)->where('ispublic',1)->limit(4)->get();
         $report = Report::all();
         $exsum = Exsum::all();
         $jurnal = Jurnal::all();

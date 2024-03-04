@@ -593,7 +593,7 @@
                 <div class="col-12 text-center">
                     <div wire:loading.remove wire:target="filemodule">
                         <button type="submit" class="btn btn-primary me-sm-3 me-1">Submit</button>
-                        <button wire:click='$set("action","A")' type="reset" class="btn btn-label-secondary btn-reset">
+                        <button wire:click='cancel()' type="reset" class="btn btn-label-secondary btn-reset">
                             Cancel
                         </button>
                     </div>
