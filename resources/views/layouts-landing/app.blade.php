@@ -107,6 +107,7 @@
 <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
 <script src="{{ asset('assets/vendor/plyr/plyr.js')}}"></script>
 <script src="{{ asset('assets/js/functions.js') }}"></script>
+{{-- <script src="{{ asset('assets/js/pdf.min.js') }}"></script> --}}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
 
 <!-- DataTables initialization script -->

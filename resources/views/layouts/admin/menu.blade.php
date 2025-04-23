@@ -14,6 +14,18 @@
     </div>
     <div class="menu-inner-shadow"></div>
     <ul class="menu-inner py-1">
+        <li class="menu-item {{ request()->is('admin/learning') ? 'active' : '' }}">
+            <a href="{{ route('adminlearning') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div>Learning</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->is('admin/sectionmodule') ? 'active' : '' }}">
+            <a href="{{ route('sectionmodule') }}" class="menu-link">
+                <i class="menu-icon tf-icons ti ti-smart-home"></i>
+                <div>Section Learning</div>
+            </a>
+        </li>
         @if (auth()->user()->hasAnyRole('super-admin', 'admin-unit'))
             <li class="menu-item {{ request()->is('admin/knowledge') ? 'active' : '' }}">
                 <a href="{{ route('knowledge') }}" class="menu-link">
@@ -53,6 +65,12 @@
                 <a href="{{ route('category') }}" class="menu-link">
                     <i class="menu-icon tf-icons ti ti-category"></i>
                     <div>Category</div>
+                </a>
+            </li>
+            <li class="menu-item {{ request()->is('admin/categorylearn') ? 'active' : '' }}">
+                <a href="{{ route('categorylearn') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ti ti-category"></i>
+                    <div>Category Learning</div>
                 </a>
             </li>
             <li class="menu-item {{ request()->is('admin/ws') ? 'active' : '' }}">

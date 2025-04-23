@@ -11,7 +11,7 @@ class Explanation extends Model
     use HasFactory;
     use Searchable;
 
-    protected $fillable = ['description','file', 'knowledge_id'];
+    protected $fillable = ['description','file', 'knowledge_id', 'link'];
 
     protected $searchableFields = ['*'];
 

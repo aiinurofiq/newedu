@@ -24,6 +24,7 @@
                 </div>
             </div>
         </div>
+        
         <div class="table-responsive ms-4 me-4">
             <table class="table">
                 <thead>
@@ -31,6 +32,8 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Title</th>
                         <th class="text-center">Image</th>
+                        <th class="text-center">Category</th>
+                        <th class="text-center">User</th>
                         <th class="text-center">Total Section</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -44,13 +47,27 @@
                                 <img src="{{ asset(\Storage::url($item->image)) }}" class="rounded" alt="Shoe img"
                                     height="62" width="62" style="object-fit: cover;" />
                             </td>
-                            <td class="text-center text-nowrap">
-                                <div class="ms-3 badge bg-label-danger">{{ $item->sections->count() }}</div>
+                            <td class="text-center" width='1%'>
+                                @if ($item->level == 1)
+                                    <div class="badge bg-success mb-1">Level : Beginner</div>
+                                @else
+                                    @if ($item->level == 2)
+                                        <div class="badge bg-warning mb-1">Level : Intermediate</div>
+                                    @else
+                                        <div class="badge bg-danger mb-1">Level : Advanced</div>
+                                    @endif
+                                @endif<br>
+                                <div class="badge bg-primary">Category : {{ $item->categorylearn->name }}</div>
                             </td>
                             <td class="text-center text-nowrap">
-                                <button wire:click="datasection({{ $item->id }})"
-                                    onclick="event.preventDefault()" class="btn btn-sm btn-primary" width='1%'><span
-                                        class="fw-bold">Section &
+                                {{ $item->user->name }}
+                            </td>
+                            <td class="text-center text-nowrap">
+                                <div class="badge bg-gray">{{ $item->sections->count() }}</div>
+                            </td>
+                            <td class="text-center text-nowrap">
+                                <button wire:click="datasection({{ $item->id }})" onclick="event.preventDefault()"
+                                    class="btn btn-sm btn-primary" width='1%'><span class="fw-bold">Section &
                                         Module</span></button>
                             </td>
                         </tr>
@@ -74,7 +91,8 @@
         {{-- <div class="card-header"> --}}
         <div class="d-flex justify-content-between align-items-center ms-4 me-4 mt-4">
             <div>
-                <h5>Section Learning <span class="badge bg-danger rounded-pill">{{ $learning ? $learning->title : '' }}</span></h5>
+                <h5>Section Learning <span
+                        class="badge bg-danger rounded-pill">{{ $learning ? $learning->title : '' }}</span></h5>
             </div>
             <div class="d-flex align-items-center">
                 <button wire:click="$set('action', 'AddSec')" class="btn btn-primary me-2"><i
@@ -215,7 +233,8 @@
         </div>
     </div>
     <div class="card mb-4 {{ $action == 'AddSec' || $action == 'AddMod' ? '' : 'd-none' }}">
-        <h5 class="card-header">{{ $editsection || $editmodule ? 'Edit' : 'Tambah' }} {{ $action == 'AddSec' ? 'Section' : 'Module' }}</h5>
+        <h5 class="card-header">{{ $editsection || $editmodule ? 'Edit' : 'Tambah' }}
+            {{ $action == 'AddSec' ? 'Section' : 'Module' }}</h5>
         <div class="card-body">
             <div class="row g-3">
                 <div class="col-md-{{ $action == 'AddMod' ? '12' : '6' }}">
@@ -272,7 +291,8 @@
                 </div>
                 <div
                     class="{{ $action == 'AddMod' ? 'col-md-6' : 'col-md-12' }}  {{ $typemodule == '1' || $action == 'AddSec' ? '' : 'd-none' }}">
-                    <label for="formFile" class="form-label">{{ $editsection || $editmodule ? 'Edit' : '' }} Berkas</label>
+                    <label for="formFile" class="form-label">{{ $editsection || $editmodule ? 'Edit' : '' }}
+                        Berkas</label>
                     <form wire:ignore action="{{ route('dropzonestore') }}" method="post"
                         enctype="multipart/form-data" id="image-upload" class="dropzone">
                         @csrf
@@ -357,12 +377,13 @@
                             uploadimage()
                         } else if (param.type == 'edit' || param.type == 'editmodule') {
                             type = param.type;
-                            dropzone.getAcceptedFiles().length == 0 ? window.livewire.emit(param.type,
+                            dropzone.getAcceptedFiles().length == 0 ? window.livewire.emit(param
+                                .type,
                                 1,
                                 true) : uploadimage()
                         } else {
                             window.livewire.emit(param.type, 1, true)
-                        } 
+                        }
                     }
                 });
             });

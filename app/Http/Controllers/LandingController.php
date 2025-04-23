@@ -136,11 +136,11 @@ class LandingController extends Controller
     {
         $curl = curl_init();
         $auth_data = array(
-            'Bearer:'.'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiSGVsbG8sIFdvcmxkISIsImV4cGlyZWRfdG9rZW4iOiIyMDI0LTEyLTE4IDA2OjE1OjIwIn0.pv0Hdeu_0vW0LftHdWGkVnFn4J8DNTk3p-m-r2KyfWY',
+            'Bearer:'.'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJkYXRhIjoiSGVsbG8sIFdvcmxkISIsImV4cGlyZWRfdG9rZW4iOiIyMDI1LTA5LTEyIDE1OjI1OjMwIn0.lniHxUNeLfCoj4bWBDmE0GbSS06JwhirO8tdJKx6Sm8',
         );
         curl_setopt($curl, CURLOPT_POST, 1);
         // curl_setopt($curl, CURLOPT_POSTFIELDS, $auth_data);
-        curl_setopt($curl, CURLOPT_URL, 'https://hadir.wachid.dev/api/list-pegawai');
+        curl_setopt($curl, CURLOPT_URL, 'https://hadir.jasatirta1.co.id/api/list-pegawai');
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $auth_data);
         curl_setopt($curl, CURLOPT_HTTPAUTH, CURLAUTH_BASIC);

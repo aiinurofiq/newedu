@@ -1,12 +1,14 @@
 <?php
 
 use App\Http\Controllers\ArsipController;
+use App\Http\Livewire\admin\CategoryLearningLivewire;
 use App\Http\Livewire\admin\Learningadmin;
 use App\Http\Livewire\admin\WsLivewire;
 use App\Http\Livewire\Quizdetail;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UploadController;
 use App\Http\Controllers\CityController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KnowController;
@@ -57,6 +59,7 @@ use App\Http\Livewire\LearnAll;
 use App\Http\Livewire\Quiz;
 use App\Http\Livewire\admin\Authlogin;
 use App\Http\Livewire\admin\Profileuser;
+use App\Http\Livewire\admin\QuizLivewire;
 
 /*
 |--------------------------------------------------------------------------
@@ -79,6 +82,9 @@ Route::get('/all-knowledge', [KnowAll::class, 'render'])->name('know-all');
 
 Route::get('/listpegawai', [LandingController::class, 'changepegawai'])->name('listpegawai');
 Route::post('/loginpegawai', [Authlogin::class, 'login'])->name('loginpegawai');
+
+Route::get('/upload', [UploadController::class, 'upload']);
+Route::post('/upload/proses', [UploadController::class, 'proses_upload']);
 
 
 Route::post('/dropzone/store', [Learningadmin::class, 'dropzoneStore'])->name('dropzonestore');
@@ -144,6 +150,7 @@ Route::prefix('/')
         
         Route::get('/admin/learning', Learningadmin::class)->name('adminlearning');
         Route::get('/admin/sectionmodule', Sectionmodule::class)->name('sectionmodule');
+        Route::get('/admin/quizz', QuizLivewire::class)->name('quizz');
         Route::get('/admin/knowledge', Knowledgeadmin::class)->name('knowledge');
         Route::get('/admin/approve', Approveknowledge::class)->name('approve');
         Route::get('/admin/request', Requestknowledge::class)->name('request');
@@ -152,6 +159,7 @@ Route::prefix('/')
         Route::get('/admin/permission', Permission::class)->name('permission');
         Route::get('/admin/topic', TopicLivewire::class)->name('topic');
         Route::get('/admin/category', CategoryLivewire::class)->name('category');
+        Route::get('/admin/categorylearn', CategoryLearningLivewire::class)->name('categorylearn');
         Route::get('/admin/ws', WsLivewire::class)->name('ws');
         Route::get('/admin/divisi', DivisiLivewire::class)->name('divisi');
         Route::get('/admin/profileuser', Profileuser::class)->name('profileuser');

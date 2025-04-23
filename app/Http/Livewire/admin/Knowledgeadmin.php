@@ -21,7 +21,7 @@ class Knowledgeadmin extends Component
 {
     use WithFileUploads;
     use WithPagination;
-    public $topicall, $categoryall, $divisiall, $wsall, $title, $abstract, $topic, $category, $ws, $divisi, $imageknowledge, $writer, $editknowledge, $deleteknowledge, $jurnalall = [], $exsumall = [], $explanall = [], $reportall = [], $filemodule, $description, $typemodule, $deletemoduleid, $editmoduleid, $year;
+    public $topicall, $categoryall, $divisiall, $wsall, $title, $abstract, $topic, $category, $ws, $divisi, $imageknowledge, $writer, $editknowledge, $deleteknowledge, $jurnalall = [], $exsumall = [], $explanall = [], $reportall = [], $filemodule, $description, $typemodule, $deletemoduleid, $editmoduleid, $year, $link = 'file', $linkform;
     public $perPage = 5;
     public $action = 'R';
     protected $paginationTheme = 'bootstrap';
@@ -193,6 +193,15 @@ class Knowledgeadmin extends Component
             $validate = [
                 'filemodule' => 'required',
             ];
+            if ($this->link == 'file') {
+                $validate = [
+                    'filemodule' => 'required',
+                ];
+            } else {
+                $validate = [
+                    'linkform' => 'required',
+                ];
+            }
             $this->validate($validate);
             $this->addmodule($this->typemodule);
         }
@@ -204,12 +213,16 @@ class Knowledgeadmin extends Component
             $this->emit('konfirm', ['title' => 'Apakah anda yakin?', 'text' => 'Module akan ditambah!', 'icon' => 'warning', 'confirm' => 'Tambah Module!', 'type' => 'addmodule']);
         } else {
             try {
-                $upload = $this->filemodule->store('public');
                 $data = [
-                    'file' => $upload . '|' . $this->filemodule->getClientOriginalName(),
                     'description' => $this->description,
                     'knowledge_id' => $this->deleteknowledge->id,
                 ];
+                if ($this->link == 'file') {
+                    $upload = $this->filemodule->store('public');
+                    $data['file'] = $upload . '|' . $this->filemodule->getClientOriginalName();
+                } else {
+                    $data['link'] = $this->linkform;
+                }
                 if ($this->typemodule == 'jurnal') {
                     Jurnal::create($data);
                     $this->jurnalall = Jurnal::where('knowledge_id', $this->deleteknowledge->id,)->get();

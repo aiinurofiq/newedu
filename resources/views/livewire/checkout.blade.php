@@ -52,6 +52,11 @@
                                         value="{{ auth()->user()->name }}" disabled>
                                 </div>
                                 <div class="col-md-6 bg-light-input">
+                                    <label for="postalCode" class="form-label">Kopeg *</label>
+                                    <input type="text" class="form-control" id="postalCode" placeholder="PIN code"
+                                        value="{{ auth()->user()->kopeg }}" disabled>
+                                </div>
+                                <div class="col-md-6 bg-light-input">
                                     <label for="emailInput" class="form-label">Email address *</label>
                                     <input type="email" class="form-control" id="emailInput" placeholder="Email"
                                         value="{{ auth()->user()->email }}" disabled>
@@ -60,11 +65,6 @@
                                     <label for="mobileNumber" class="form-label">Mobile number *</label>
                                     <input type="text" class="form-control" id="mobileNumber"
                                         placeholder="Mobile number" value="{{ auth()->user()->phone }}" disabled>
-                                </div>
-                                <div class="col-md-6 bg-light-input">
-                                    <label for="postalCode" class="form-label">City *</label>
-                                    <input type="text" class="form-control" id="postalCode" placeholder="PIN code"
-                                        value="{{ auth()->user()->city->name }}" disabled>
                                 </div>
                                 <div class="col-md-6 bg-light-input">
                                     <label for="address" class="form-label">Address *</label>

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>JTLearning Perum Jasa Tirta I</title>
+    <title>JT-LK Perum Jasa Tirta I</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="author" content="Webestica.com">
@@ -73,7 +73,7 @@
                         class="col-12 col-lg-6 d-md-flex align-items-center justify-content-center bg-primary bg-opacity-10 vh-lg-100">
                         <div class="p-3 p-lg-5">
                             <div class="text-center">
-                                <h2 class="fw-bold">Welcome to JTLEARNING community</h2>
+                                <h2 class="fw-bold">Welcome to JT-LK community</h2>
                                 <p class="mb-0 h6 fw-light">Let's learn something new today!</p>
                             </div> <img src="{{ asset('assets/images/element/02.svg') }}" class="mt-5" alt="">
                         </div>
@@ -81,7 +81,7 @@
                     <div class="col-12 col-lg-6 m-auto">
                         <div class="row my-5">
                             <div class="col-sm-10 col-xl-8 m-auto"> <span class="mb-0 fs-1">👋</span>
-                                <h1 class="fs-2">Login into JTLEARNING!</h1>
+                                <h1 class="fs-2">Login into JT-LK!</h1>
                                 <p class="lead mb-4">Nice to see you! Please log in with your account.</p>
                                 <form method="POST" action="{{ route('loginpegawai') }}">
                                     @csrf

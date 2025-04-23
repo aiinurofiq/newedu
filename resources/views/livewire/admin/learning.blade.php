@@ -35,8 +35,8 @@
                         <th class="text-center">No</th>
                         <th class="text-center">Title</th>
                         <th class="text-center">Image</th>
-                        <th class="text-center">Price</th>
                         <th class="text-center">User</th>
+                        <th class="text-center">Price</th>
                         <th class="text-center">Status</th>
                         <th class="text-center">Actions</th>
                     </tr>
@@ -50,13 +50,13 @@
                                 <img src="{{ asset(\Storage::url($item->image)) }}" class="rounded" alt="Shoe img"
                                     height="62" width="62" style="object-fit: cover;" />
                             </td>
-                            <td class="text-end text-nowrap">{{ 'Rp ' . format_uang($item->price) }}</td>
                             <td class="text-center">{{ $item->user->name }}</td>
+                            <td class="text-end text-nowrap"><div class="badge bg-primary mb-1">{{ 'Rp ' . format_uang($item->price) }}</div></td>
                             <td class="text-center">
                                 @if ($item->ispublic == 1)
-                                    <div class="ms-3 badge bg-label-success">Published</div>
+                                    <div class="badge bg-success mb-1">Published</div>
                                 @else
-                                    <div class="ms-3 badge bg-label-danger">Not Published</div>
+                                    <div class="badge bg-danger mb-1">Not Published</div>
                                 @endif
                             </td>
                             <td class="text-center" width='1%'>

@@ -43,7 +43,7 @@
 			  </svg>
 			</figure>
 			<h1 class="position-relative fs-2">
-				JTLearning is platform online knowledge and learning from Perum Jasa Tirta I. Taught by experts to help you acquire new skills.
+				JT-LK is platform online knowledge and learning from Perum Jasa Tirta I. Taught by experts to help you acquire new skills.
 			</h1>
 		  </div>
 		</div>
@@ -105,7 +105,7 @@
 	  <div class="container">
 		<div class="row mb-4">
 		  <div class="col-lg-8">
-			<h2>About JTLearning</h2>
+			<h2>About JT-LK</h2>
 			<p class="mb-0">
 				In essence, learning is a dynamic and enriching process that not only enhances individual capabilities but also contributes to societal progress and well-being. The benefits of learning extend far beyond the acquisition of specific knowledge, impacting various facets of life in a positive and transformative manner.
 			</p>

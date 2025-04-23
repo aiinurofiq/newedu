@@ -126,7 +126,8 @@
                                                                         class="d-flex justify-content-between align-items-center">
                                                                         <div class="position-relative d-flex align-items-center changeimg"
                                                                             data-id="{{ $items->id }}" data-type="j"
-                                                                            data-img="{{ explode('|', $items->file)[0] }}">
+                                                                            data-img="{{ explode('|', $items->file)[0] }}"
+                                                                            data-link={{ $items->link }}>
                                                                             <div href="#"
                                                                                 id="btn-j{{ $items->id }}"
                                                                                 class="btn btn-danger-soft btn-round btn-sm mb-0 ">
@@ -180,7 +181,8 @@
                                                                         class="d-flex justify-content-between align-items-center">
                                                                         <div class="position-relative d-flex align-items-center changeimg"
                                                                             data-id="{{ $items->id }}" data-type="exs"
-                                                                            data-img="{{ explode('|', $items->file)[0] }}">
+                                                                            data-img="{{ explode('|', $items->file)[0] }}"
+                                                                            data-link={{ $items->link }}>
                                                                             <div href="#"
                                                                                 id="btn-exs{{ $items->id }}"
                                                                                 class="btn btn-danger-soft btn-round btn-sm mb-0 ">
@@ -234,7 +236,8 @@
                                                                         class="d-flex justify-content-between align-items-center">
                                                                         <div class="position-relative d-flex align-items-center changeimg"
                                                                             data-id="{{ $items->id }}" data-type="re"
-                                                                            data-img="{{ explode('|', $items->file)[0] }}">
+                                                                            data-img="{{ explode('|', $items->file)[0] }}"
+                                                                            data-link={{ $items->link }}>
                                                                             <div href="#"
                                                                                 id="btn-re{{ $items->id }}"
                                                                                 class="btn btn-danger-soft btn-round btn-sm mb-0 ">
@@ -288,7 +291,8 @@
                                                                         class="d-flex justify-content-between align-items-center">
                                                                         <div class="position-relative d-flex align-items-center changeimg"
                                                                             data-id="{{ $items->id }}" data-type="exp"
-                                                                            data-img="{{ explode('|', $items->file)[0] }}">
+                                                                            data-img="{{ explode('|', $items->file)[0] }}"
+                                                                            data-link={{ $items->link }}>
                                                                             <div href="#"
                                                                                 id="btn-exp{{ $items->id }}"
                                                                                 class="btn btn-danger-soft btn-round btn-sm mb-0 ">
@@ -565,6 +569,7 @@
                     let typemod = $(this).attr("data-type");
                     let dataId = $(this).attr("data-img");
                     let videoembed = $(this).attr("data-url");
+                    let linkform = $(this).attr("data-link");
                     $("#header-" + typemod + dataIdheader).toggleClass("p-2 bg-success bg-opacity-10 rounded-3")
                     // $("#duration-" + dataIdheader).html("Playing")
                     // alert("#btn-"+dataIdheader)
@@ -582,14 +587,25 @@
                             }, ],
                         };
                     } else {
-                        var img = dataId.replace('public', 'storage');
-                        fileExtension = dataId.replace(/^.*\./, '');
+                        if (linkform) {
+                            var img = linkform;
+                            fileExtension = linkform.replace(/^.*\./, '');
+                        } else {
+                            var img = dataId.replace('public', 'storage');
+                            fileExtension = dataId.replace(/^.*\./, '');
+                        }
                         switch (fileExtension) {
                             case 'png':
                                 $('#loadingpdf').addClass('d-none')
                                 $('#gambar').removeClass('d-none')
-                                $('#changeimage').attr("src",
-                                    "http://edutirta.test/" + img);
+
+                                if (linkform) {
+                                    $('#changeimage').attr("src",
+                                        img);
+                                } else {
+                                    $('#changeimage').attr("src",
+                                        "http://edutirta.test/" + img);
+                                }
                                 break;
                             case 'jpeg':
                                 $('#loadingpdf').addClass('d-none')
@@ -628,7 +644,12 @@
                                 // player.play();
                                 break;
                             case 'pdf':
-                                url = "http://edutirta.test/" + img;
+                                if (linkform) {
+                                    url = img;
+                                } else {
+                                    url = "http://edutirta.test/" + img;
+                                }
+                                // url = "https://drive.google.com/file/d/1D9UAENyA_kRmR4kkiDPAhBeuojtkgCkF"; 
                                 pageNum = 1;
 
                                 pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {

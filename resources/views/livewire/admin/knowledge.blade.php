@@ -303,8 +303,8 @@
                                                 {{ $loop->iteration }}</td>
                                             <td>{{ $item->description }}</td>
                                             <td class="text-center" width='1%'>
-                                                <a href="{{ asset(\Storage::url(explode('|',$item->file)[0])) }}" target="_blank"
-                                                    class="btn btn-primary btn-sm btn-icon">
+                                                <a href="{{ $item->file ? asset(\Storage::url(explode('|', $item->file)[0])) : $item->link }}"
+                                                    target="_blank" class="btn btn-primary btn-sm btn-icon">
                                                     <span class="ti-xs ti ti-file"></span></a>
                                             </td>
                                             <td class="text-center" width='1%'>
@@ -316,7 +316,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li><a wire:click="confirmedit('jurnal',{{ $item->id }})"
-                                                                class="dropdown-item" href="javascript:void(0);">
+                                                                class="dropdown-item d-none" href="javascript:void(0);">
                                                                 <i class="ti ti-edit-circle me-2 ti-sm"></i>
                                                                 <span class="align-middle">Edit Module</span></a>
                                                         </li>
@@ -379,8 +379,8 @@
                                                 {{ $loop->iteration }}</td>
                                             <td>{{ $item->description }}</td>
                                             <td class="text-center" width='1%'>
-                                                <a href="{{ asset(\Storage::url(explode('|',$item->file)[0])) }}" target="_blank"
-                                                    class="btn btn-primary btn-sm btn-icon">
+                                                <a href="{{ $item->file ? asset(\Storage::url(explode('|', $item->file)[0])) : $item->link }}"
+                                                    target="_blank" class="btn btn-primary btn-sm btn-icon">
                                                     <span class="ti-xs ti ti-file"></span></a>
                                             </td>
                                             <td class="text-center" width='1%'>
@@ -392,7 +392,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li><a wire:click="confirmedit('exsum',{{ $item->id }})"
-                                                                class="dropdown-item" href="javascript:void(0);">
+                                                                class="dropdown-item d-none" href="javascript:void(0);">
                                                                 <i class="ti ti-edit-circle me-2 ti-sm"></i>
                                                                 <span class="align-middle">Edit Module</span></a>
                                                         </li>
@@ -455,8 +455,8 @@
                                                 {{ $loop->iteration }}</td>
                                             <td>{{ $item->description }}</td>
                                             <td class="text-center" width='1%'>
-                                                <a href="{{ asset(\Storage::url(explode('|',$item->file)[0])) }}" target="_blank"
-                                                    class="btn btn-primary btn-sm btn-icon">
+                                                <a href="{{ $item->file ? asset(\Storage::url(explode('|', $item->file)[0])) : $item->link }}"
+                                                    target="_blank" class="btn btn-primary btn-sm btn-icon">
                                                     <span class="ti-xs ti ti-file"></span></a>
                                             </td>
                                             <td class="text-center" width='1%'>
@@ -468,7 +468,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li><a wire:click="confirmedit('explan',{{ $item->id }})"
-                                                                class="dropdown-item" href="javascript:void(0);">
+                                                                class="dropdown-item d-none" href="javascript:void(0);">
                                                                 <i class="ti ti-edit-circle me-2 ti-sm"></i>
                                                                 <span class="align-middle">Edit Module</span></a>
                                                         </li>
@@ -531,8 +531,8 @@
                                                 {{ $loop->iteration }}</td>
                                             <td>{{ $item->description }}</td>
                                             <td class="text-center" width='1%'>
-                                                <a href="{{ asset(\Storage::url(explode('|',$item->file)[0])) }}" target="_blank"
-                                                    class="btn btn-primary btn-sm btn-icon">
+                                                <a href="{{ $item->file ? asset(\Storage::url(explode('|', $item->file)[0])) : $item->link }}"
+                                                    target="_blank" class="btn btn-primary btn-sm btn-icon">
                                                     <span class="ti-xs ti ti-file"></span></a>
                                             </td>
                                             <td class="text-center" width='1%'>
@@ -544,7 +544,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu dropdown-menu-end">
                                                         <li><a wire:click="confirmedit('report',{{ $item->id }})"
-                                                                class="dropdown-item" href="javascript:void(0);">
+                                                                class="dropdown-item d-none" href="javascript:void(0);">
                                                                 <i class="ti ti-edit-circle me-2 ti-sm"></i>
                                                                 <span class="align-middle">Edit Module</span></a>
                                                         </li>
@@ -576,12 +576,28 @@
         <h5 class="card-header">Module </h5>
         <div class="card-body">
             <form wire:submit.prevent="confirmmodule" id="addNewCCForm" class="row g-3">
-                <div class="col-12">
+                <div class="col-6">
+                    <label class="form-label" for="modalAddCardName">Type Upload</label>
+                    <select wire:model='link' name="link" class="form-select">
+                        <option value="file" selected>File</option>
+                        <option value="link">Link</option>
+                    </select>
+                </div>
+                <div class="col-6 {{ $link == 'file' ? '' : 'd-none' }}" >
                     <label class="form-label" for="modalAddCardName">File</label>
                     <input wire:model='filemodule' type="file"
                         class="form-control fileupload @error('filemodule') is-invalid @enderror"
                         placeholder="John Doe" />
                     @error('filemodule')
+                        <span class="invalid-feedback">{{ $message }}</span>
+                    @enderror
+                </div>
+                <div class="col-6 {{ $link != 'file' ? '' : 'd-none' }}">
+                    <label class="form-label" for="modalAddCardName">Link</label>
+                    <input wire:model='linkform' type="text"
+                        class="form-control @error('linkform') is-invalid @enderror"
+                        placeholder="Link Upload" />
+                    @error('linkform')
                         <span class="invalid-feedback">{{ $message }}</span>
                     @enderror
                 </div>
@@ -599,8 +615,7 @@
                     </div>
                     <div wire:loading wire:target="filemodule">
                         <button class="btn btn-primary" type="button" disabled>
-                            <span class="spinner-border spinner-border-sm" role="status"
-                                aria-hidden="true"></span>
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                         </button>
                     </div>
                 </div>

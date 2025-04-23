@@ -42,6 +42,12 @@
                                     <div class="tab-pane fade show active" id="course-pills-1" role="tabpanel"
                                         aria-labelledby="course-pills-tab-1">
                                         <h5 class="mb-3">Abstract Knowledge</h5>
+                                        <div class="d-flex justify-content-center align-items-center bg-secondary"
+                                            style="height: 350px;" id='loadingpdf'>
+                                            <div class="spinner-border text-light" role="status">
+                                                <span class="visually-hidden">Loading...</span>
+                                            </div>
+                                        </div>
                                         <p class="mb-3">
                                             {{ $learns->description }}
                                         </p>
@@ -51,7 +57,8 @@
                                     <h5 class="mb-3" id='titlemodules'>Abstract Knowledge</h5>
                                     <div id="gambar" class="d-none">
                                         <img id='changeimage'
-                                            src="{{ $learns->image ? asset(\Storage::url($learns->image)) : '' }}" alt="">
+                                            src="{{ $learns->image ? asset(\Storage::url($learns->image)) : '' }}"
+                                            alt="">
                                     </div>
                                     <iframe id="youtube" class="d-none" width="100%" height="500"
                                         src="https://www.youtube.com/embed/0clqrvUTCRk?si=eovY5H6cpPLb2mBs"
@@ -262,7 +269,7 @@
                 // Initial/first page rendering
                 renderPage(pageNum);
             });
-            
+
             $(document).ready(function() {
                 const player2 = new Plyr('#youtuber');
                 window.player = player2;
@@ -271,6 +278,7 @@
                 $(".changeimg").on("click", function() {
                     player.stop();
                     player2.stop();
+                    $('#loadingpdf').removeClass('d-none')
                     $('#course-pills-tabContent').removeClass('d-none')
                     $('.btn-round').removeClass('btn-success')
                     $('.btn-round').addClass('btn-danger-soft')
@@ -294,6 +302,7 @@
                     $('#titlemodules').html(title + ' - ' + subtitle)
                     $('#descriptionmodules').html(description)
                     if (videoembed) {
+                        $('#loadingpdf').addClass('d-none')
                         $('#youtuber').removeClass('d-none')
                         $('#youtuber').attr("src",
                             videoembed);
@@ -309,21 +318,25 @@
                         fileExtension = dataId.replace(/^.*\./, '');
                         switch (fileExtension) {
                             case 'png':
+                                $('#loadingpdf').addClass('d-none')
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
                                     "http://edutirta.test/" + img);
                                 break;
                             case 'jpeg':
+                                $('#loadingpdf').addClass('d-none')
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
                                     "http://edutirta.test/" + img);
                                 break;
                             case 'jpg':
+                                $('#loadingpdf').addClass('d-none')
                                 $('#gambar').removeClass('d-none')
                                 $('#changeimage').attr("src",
                                     "http://edutirta.test/" + img);
                                 break;
                             case 'mp4':
+                                $('#loadingpdf').addClass('d-none')
                                 $('.mediaplayer').removeClass('d-none')
                                 // player.play();
                                 // $('#mediadetail').attr("src",
@@ -347,11 +360,12 @@
                                 // player.play();
                                 break;
                             case 'pdf':
-                                $('#filepdf').removeClass('d-none')
                                 url = "http://edutirta.test/" + img;
                                 pageNum = 1;
 
                                 pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+                                    $('#loadingpdf').addClass('d-none')
+                                    $('#filepdf').removeClass('d-none')
                                     pdfDoc = pdfDoc_;
                                     document.getElementById('page_count').textContent = pdfDoc.numPages;
 
@@ -372,5 +386,4 @@
             });
         </script>
     @endpush
-    
 @endsection

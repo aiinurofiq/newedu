@@ -15,7 +15,7 @@
                         <p class="mb-0 text-dark"><span class="badge text-bg-success rounded-pill me-1">New</span> Knowledge Updated</p>
                     </div>
                     <h1 class="text-white display-5">Start learning from <span class="text-warning">best platform</span></h1>
-                    <p class="text-white">JTlearning is online learning and teaching from Perum Jasa Tirta I. Taught by experts to help you acquire new skills.</p>
+                    <p class="text-white">JT-LK is online learning and teaching from Perum Jasa Tirta I. Taught by experts to help you acquire new skills.</p>
                     <div class="d-sm-flex align-items-center mt-4"> <a href="#" class="btn btn-primary me-2 mb-4 mb-sm-0 d-none">Get Started</a>
                         <div class="d-flex align-items-center justify-content-center py-2 ms-0 ms-sm-4 d-none">
                             <a data-glightbox data-gallery="office-tour" href="https://www.youtube.com/embed/tXHviS-4ygo" class="btn btn-round btn-white-shadow text-danger me-7 mb-0 overflow-visible"> <i class="fas fa-play"></i>
@@ -99,7 +99,7 @@
     <div class="container">
         <div class="row g-4 align-items-center">
             <div class="col-lg-5">
-                <h2>Find Out More About us, <span class="text-warning">JTLearning</span> insides.</h2> <img src="{{asset('bg2.jpg')}}" class="rounded-2" alt=""> </div>
+                <h2>Find Out More About us, <span class="text-warning">JT-LK</span> insides.</h2> <img src="{{asset('bg2.jpg')}}" class="rounded-2" alt=""> </div>
             <div class="col-lg-7">
                 <div class="row g-4">
                     <div class="col-sm-6">
